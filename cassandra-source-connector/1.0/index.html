@@ -121,16 +121,16 @@ for table having the CDC enabled to <a href="https://pulsar.apache.org/">Apache 
 <div class="ulist">
 <ul>
 <li>
-<p>Support both Apache Cassandra 3.11+ and 4.0+</p>
+<p>Support both Apache Cassandra 3.11+, 4.0+ and Datastax Enterprise Server 6.8.16+</p>
 </li>
 <li>
-<p>Support Apache Pulsar 2.8.1+.</p>
+<p>Support Luna Streaming 2.7.2</p>
 </li>
 <li>
-<p>Propagate Cassandra schema change to the Pulsar schema registry</p>
+<p>Propagate Cassandra schema change to the Apache Pulsar schema registry</p>
 </li>
 <li>
-<p>Support JSON or AVRO message format.</p>
+<p>Support AVRO message format.</p>
 </li>
 </ul>
 </div>
@@ -145,7 +145,7 @@ for table having the CDC enabled to <a href="https://pulsar.apache.org/">Apache 
 <p>Does not manage table truncates</p>
 </li>
 <li>
-<p>Does not replay batch updates</p>
+<p>Does not replay logged batches</p>
 </li>
 <li>
 <p>Does not sync data available before starting the CDC producer.</p>
@@ -237,7 +237,7 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Apache Pulsar® 2.8.1 and later</p>
+<p>Luna Streaming 2.7.2 and later</p>
 </li>
 </ul>
 </div>
@@ -296,9 +296,17 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Cassandra static columns are supported:
-* On row level updates, static columns are included in the message value.
-* On partition level updates, the clustering keys are null in the message key, and the message value only has static columns on insert/update operations.</p>
+<p>Cassandra static columns are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On row level updates, static columns are included in the message value.</p>
+</li>
+<li>
+<p>On partition level updates, the clustering keys are null in the message key, and the message value only has static columns on insert/update operations.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

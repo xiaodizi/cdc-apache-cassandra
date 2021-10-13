@@ -111,35 +111,76 @@
 <h2 id="_producer_metrics"><a class="anchor" href="#_producer_metrics"></a>Producer Metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The producer JVM agent provides a dedicated MBean <strong>CdcProducer</strong> with the following metrics for each Cassandra node:</p>
+<p>The CDC producer JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcProducer</strong> with the following metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Metric</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SentMutations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sentMutations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of Cassandra mutations successfully sent to the streaming platform.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SentErrors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sentErrors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of errors when sending mutations to the streaming platform.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">commitLogReadErrors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of unrecoverable commitlog file reads.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">skippedMutations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of ignored mutations because the primary key has an unsupported column type.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">executedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of executed task to process commitlog files.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">submittedTasksGauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of submitted tasks to the task dedicated thread pool.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxSubmittedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of submitted tasks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pendingTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of pending tasks to re-process a commitlog file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxPendingTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of pending tasks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uncleanedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of tasks for which processed commitlog file have not yet been removed from the cdc_raw directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxUncleanedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of uncleaned tasks.</p></td>
 </tr>
 </tbody>
 </table>
