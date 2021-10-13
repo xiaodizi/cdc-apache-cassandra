@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Monitor DataStax Cassandra Source Connector :: DataStax Cassandra Source Connector documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cass-source-connector/1.0/monitor.html">
+    <title>Untitled :: DataStax Cassandra Source Connector documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cassandra-source-connector/1.0/cfgCassandraSSL.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cass-source-connector" data-version="1.0">
+<div class="nav-container" data-component="cassandra-source-connector" data-version="1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -63,7 +63,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="install.html">Installing the DataStax Cassandra Source Connector</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="monitor.html">Monitor DataStax Cassandra Source Connector</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -97,49 +97,95 @@
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="index.html">DataStax Cassandra Source Connector (beta) documentation</a></li>
-    <li><a href="monitor.html">Monitor DataStax Cassandra Source Connector</a></li>
-  </ul>
 </nav>
-  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/monitor.adoc">Edit this Page</a></div>-->
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/cfgCassandraSSL.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Monitor DataStax Cassandra Source Connector</h1>
 <div class="sect1">
-<h2 id="_producer_metrics"><a class="anchor" href="#_producer_metrics"></a>Producer Metrics</h2>
+<h2 id="_cassandra_ssltls_settings"><a class="anchor" href="#_cassandra_ssltls_settings"></a>Cassandra SSL/TLS settings</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The producer JVM agent provides a dedicated MBean <strong>CdcProducer</strong> with the following metrics for each Cassandra node:</p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Table Cassandra SSL/TLS settings</caption>
 <colgroup>
 <col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Metric</th>
+<th class="tableblock halign-left valign-top">Name</th>
 <th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Validator</th>
+<th class="tableblock halign-left valign-top">Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SentMutations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of Cassandra mutations successfully sent to the streaming platform.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.cipherSuites</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The cipher suites to enable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SentErrors</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of errors when sending mutations to the streaming platform.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.hostnameValidation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether or not to validate node hostnames when using SSL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">commitLogReadErrors</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of unrecoverable commitlog file reads.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.keystore.password</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keystore password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[hidden]</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">skippedMutations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number of ignored mutations because the primary key has an unsupported column type.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.keystore.path</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the keystore file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.openssl.keyCertChain</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the certificate chain file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.openssl.privateKey</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the private key file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.provider</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL/TLS provider</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[None, JDK, OpenSSL]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.truststore.password</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Truststore password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[hidden]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.truststore.path</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the truststore file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
 </tr>
 </tbody>
 </table>
