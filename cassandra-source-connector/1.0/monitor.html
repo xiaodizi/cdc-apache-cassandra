@@ -194,22 +194,27 @@
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0001%;">
+<col style="width: 40%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Metric</th>
 <th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">cache_use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache_use</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1 when hitting the mutation cache, 0 otherwise.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">query_latency</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CQL query latency in milliseconds to fetch the updated row. This is 0 when hitting the memory cache.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">replication_latency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the pulsar publication time minus the cassandra mutation writetime).</p></td>
 </tr>
 </tbody>
 </table>
@@ -218,21 +223,28 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl http://localhost:8080/metrics/ 2&gt;/dev/null | grep user_metric
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/metrics/ 2&gt;/dev/null | grep user
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
 # HELP pulsar_source_user_metric_ User defined metric.
 # TYPE pulsar_source_user_metric_ summary
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",quantile="0.5",} 71683.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",quantile="0.9",} 99667.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",quantile="0.99",} 106717.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",quantile="0.999",} 106763.0
+pulsar_source_user_metric__count{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",} 20000.0
+pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="replication_latency",} 1.3355407E9
 pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",quantile="0.5",} 1.0
 pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",quantile="0.9",} 1.0
 pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",quantile="0.99",} 1.0
 pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",quantile="0.999",} 1.0
-pulsar_source_user_metric__count{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",} 2000.0
-pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",} 1000.0
-pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.5",} 6.0
-pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.9",} 32.0
-pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.99",} 395.0
-pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.999",} 509.0
-pulsar_source_user_metric__count{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",} 2000.0
-pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",} 26068.0</code></pre>
+pulsar_source_user_metric__count{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",} 20000.0
+pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="cache_hit",} 10000.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.5",} 2.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.9",} 9.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.99",} 104.0
+pulsar_source_user_metric_{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",quantile="0.999",} 1035.0
+pulsar_source_user_metric__count{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",} 20000.0
+pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="data-table1",instance_id="0",cluster="standalone",fqfn="public/default/data-table1",metric="query_latency",} 83886.0</code></pre>
 </div>
 </div>
 </div>
