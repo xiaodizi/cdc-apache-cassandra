@@ -193,22 +193,34 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar broker service URL.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcWorkingDir</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The CDC working directory where the last sent offset is saved, and where the archived and errored commitlogs files are copied.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar://localhost:6650</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cdc</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication plugin class name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcPoolIntervalMs</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pool interval in milliseconds for watching new commit log files in the CDC raw directory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthParams</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>errorCommitLogReprocessEnabled</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable the re-processing of error commit logs files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcConcurrentProcessor</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of threads used to process commitlog files. The default value is the memtable_flush_writers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic prefix. The keyspace and table names are appended to that prefix to build the topic name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslProvider</strong></p></td>
@@ -271,28 +283,22 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcWorkingDir</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The CDC working directory where the last sent offset is saved, and where the archived and errored commitlogs files are copied.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar broker service URL.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cdc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar://localhost:6650</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcPoolIntervalMs</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The pool interval in milliseconds for watching new commit log files in the CDC raw directory.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>errorCommitLogReprocessEnabled</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enable the re-processing of error commit logs files.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic prefix. The keyspace and table names are appended to that prefix to build the topic name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication plugin class name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthParams</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -370,7 +376,7 @@ the pulsar connectors directory or upload it. You have to specify th following p
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>key.converter</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message key to the data topic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message key to the data topic. This setting is experimental for advanced user only.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -391,7 +397,7 @@ the pulsar connectors directory or upload it. You have to specify th following p
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value.converter</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message value to the data topic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message value to the data topic. This setting is experimental for advanced user only.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -541,7 +547,7 @@ the pulsar connectors directory or upload it. You have to specify th following p
 <td class="tableblock halign-left valign-top"><p class="tableblock">The mutation cache entry duration in milliseconds, with a default value of 60 seconds.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[1000,&#8230;&#8203;]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">600000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cache.only_if_coordinator_match</strong></p></td>
