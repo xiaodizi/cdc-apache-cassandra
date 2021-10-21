@@ -110,8 +110,8 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>DataStax Cassandra® Source Connector is open-source software (OSS) that send Cassandra mutations
-for table having the CDC enabled to <a href="https://pulsar.apache.org/">Apache Pulsar</a>®, which in turn can write the data to platforms such as Elasticsearch&reg; or Snowflake&reg;.</p>
+<p>DataStax Cassandra® Source Connector is open-source software (OSS) that sends Cassandra mutations
+for tables having Change Data Capture (CDC) enabled to <a href="https://pulsar.apache.org/">Apache Pulsar</a>®, which in turn can write the data to platforms such as Elasticsearch&reg; or Snowflake&reg;.</p>
 </div>
 </div>
 </div>
@@ -169,7 +169,7 @@ for table having the CDC enabled to <a href="https://pulsar.apache.org/">Apache 
 <div class="ulist">
 <ul>
 <li>
-<p>A event producer deployed as a JVM agent on each Cassandra data node.</p>
+<p>An event producer deployed as a JVM agent on each Cassandra data node.</p>
 </li>
 <li>
 <p>A Cassandra source connector deployed in your streaming platform.</p>
@@ -187,20 +187,28 @@ for table having the CDC enabled to <a href="https://pulsar.apache.org/">Apache 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>When CDC is enabled for a given Cassandra table, the event producer running on each nodes reads the Cassandra commitlog files and emit a message for each Cassandra mutation
+<p>When CDC is enabled for a given Cassandra table, the event producer running on each node reads the Cassandra commitlog files and emits a message for each Cassandra mutation
 in a per-table events topic.</p>
 </li>
 <li>
-<p>Then the source connector process these events, it fetches the mutated Cassandra row,</p>
+<p>The source connector processes these events and fetches the mutated Cassandra row.</p>
 </li>
 <li>
-<p>and writes the row into the data topic. This ensures the most recent state of the Cassandra table is replicated into
+<p>The source connector writes the row into the data topic. This ensures the most recent state of the Cassandra table is replicated into
 the data topic without the need to time re-order Cassandra mutations.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The Cassandra Source Connector also updates the schema-registry to dynamically reflects the Cassandra table schema. You can then deploy various sink connectors (see <a href="https://pulsar.apache.org/docs/en/io-connectors/#sink-connector">Pulsar built-in sink connectors</a>) to replicate data into the backends of your choice.</p>
+<p>The Cassandra Source Connector also updates the schema-registry to dynamically reflect the Cassandra table schema. You can then deploy various sink connectors (see <a href="https://pulsar.apache.org/docs/en/io-connectors/#sink-connector">Pulsar built-in sink connectors</a>) to replicate data into the backends of your choice.</p>
+</div>
+<div class="paragraph">
+<p>To manage this option, set "is-allow-auto-update-schema" to "true" or "false".
+* "True" allows the broker to register a new schema for a topic and connect the producer if the schema is not registered.
+* "False" rejects the producer&#8217;s connection to the broker if the schema is not registered.</p>
+</div>
+<div class="paragraph">
+<p>Learn more at (<a href="https://pulsar.apache.org/docs/en/schema-manage/)">Schema Auto-Update</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_deployment_matrix"><a class="anchor" href="#_deployment_matrix"></a>Deployment matrix</h3>

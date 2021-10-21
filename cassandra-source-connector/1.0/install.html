@@ -158,14 +158,14 @@ pulsar-cassandra-source-&lt;version&gt;-SNAPSHOT.nar</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_starting_cassandra_with_the_producer_agent"><a class="anchor" href="#_starting_cassandra_with_the_producer_agent"></a>Starting Cassandra with the producer agent.</h2>
+<h2 id="_starting_cassandra_with_the_producer_agent"><a class="anchor" href="#_starting_cassandra_with_the_producer_agent"></a>Starting Cassandra with the producer agent</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All data node of your Cassandra datacenter must run the producer JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra nodes with the appropriate producer binary matching your
+<p>All data nodes of your Cassandra datacenter must run the producer JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra nodes with the appropriate producer binary matching your
 Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 </div>
 <div class="paragraph">
-<p>As a java agent, the CDC producer parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Apache Pulsar on Cassandra version 4.0 nodes:</p>
+<p>As a Java agent, the CDC producer parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Apache Pulsar on Cassandra version 4.0 nodes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -211,7 +211,7 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcConcurrentProcessor</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcConcurrentProcessors</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The number of threads used to process commitlog files. The default value is the memtable_flush_writers.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
@@ -221,6 +221,30 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The event topic prefix. The keyspace and table names are appended to that prefix to build the topic name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar broker service URL.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar://localhost:6650</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarBatchDelayInMs</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pulsar batching delay in milliseconds. Pulsar batching is enabled when this value is greater than zero.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication plugin class name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthParams</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslProvider</strong></p></td>
@@ -282,24 +306,6 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar broker service URL.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar://localhost:6650</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication plugin class name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthParams</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication parameters.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -309,18 +315,18 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In order to deploy the Cassandra Source Connector NAR file in your Pulsar cluster, you can copy it into
-the pulsar connectors directory or upload it. You have to specify th following parameters:</p>
+the pulsar connectors directory or upload it. You have to specify the following parameters:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The connector name, remember you have one connector per replicated cassandra table.</p>
+<p>The connector name- remember, you have one connector per replicated Cassandra table</p>
 </li>
 <li>
 <p>The destination topic for Cassandra data</p>
 </li>
 <li>
-<p>The connector configuration, see LINK</p>
+<p>The <a href="cfgCassandraSource.html" class="page">Cassandra Source connector configuration</a></p>
 </li>
 </ul>
 </div>
@@ -342,6 +348,17 @@ the pulsar connectors directory or upload it. You have to specify th following p
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">pulsar-admin source status --name cassandra-source-1</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monitoring_and_alerting_system"><a class="anchor" href="#_monitoring_and_alerting_system"></a>Monitoring and Alerting System</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The producer agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.
+* <a href="https://docs.datastax.com/en/opscenter/6.8/">DSE Ops Center</a> can collect these exposed metrics for visualization and alerts, and pass them on to <a href="https://docs.datastax.com/en/monitoring/doc/monitoring/opsUseMetricsCollector.html">DSE Metrics Collector</a> for additional integration with Prometheus and Grafana.
+* The <a href="https://github.com/datastax/metric-collector-for-apache-cassandra">Metrics Collector for Apache Cassandra</a> with Prometheus and Grafana dashboards provides the same functionality as DSE Metrics Collector, built on the well-supported collectd agent.
+* Other monitoring tools like <a href="https://github.com/prometheus/jmx_exporter">JMX Exporter</a> by Prometheus are available, but may require additional tuning.</p>
 </div>
 </div>
 </div>
@@ -527,6 +544,13 @@ the pulsar connectors directory or upload it. You have to specify th following p
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sub</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events.subscription.type</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pulsar events topic subscription type, with a default set to Key_Shared (case sensitive).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Exclusive, Shared, Failover, Key_Shared]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key_Shared</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cache.max.digest</strong></p></td>
