@@ -352,17 +352,6 @@ the pulsar connectors directory or upload it. You have to specify the following 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_monitoring_and_alerting_system"><a class="anchor" href="#_monitoring_and_alerting_system"></a>Monitoring and Alerting System</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The producer agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.
-* <a href="https://docs.datastax.com/en/opscenter/6.8/">DSE Ops Center</a> can collect these exposed metrics for visualization and alerts, and pass them on to <a href="https://docs.datastax.com/en/monitoring/doc/monitoring/opsUseMetricsCollector.html">DSE Metrics Collector</a> for additional integration with Prometheus and Grafana.
-* The <a href="https://github.com/datastax/metric-collector-for-apache-cassandra">Metrics Collector for Apache Cassandra</a> with Prometheus and Grafana dashboards provides the same functionality as DSE Metrics Collector, built on the well-supported collectd agent.
-* Other monitoring tools like <a href="https://github.com/prometheus/jmx_exporter">JMX Exporter</a> by Prometheus are available, but may require additional tuning.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_cassandra_source_connector_settings"><a class="anchor" href="#_cassandra_source_connector_settings"></a>Cassandra Source Connector settings</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -872,6 +861,17 @@ datastax-java-driver.advanced.metrics.session.enabled.1=b</code></pre>
 </div>
 <div class="paragraph">
 <p>For more information, refer to the <a href="https://docs.datastax.com/en/developer/java-driver/4.3/manual/core/configuration/reference/">Java driver reference configuration</a> topic.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scaling_up_your_configuration"><a class="anchor" href="#_scaling_up_your_configuration"></a>Scaling up your configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to increase the throughput of the CDC replication on multiple Pulsar brokers, you can configure <a href="https://pulsar.apache.org/docs/en/admin-api-topics/#manage-partitioned-topics">Pulsar partitioned topics</a> before starting the CDC producers. Depending on the desired latency, you can adjust the <strong>pulsarBatchDelayInMs</strong> to group messages.</p>
+</div>
+<div class="paragraph">
+<p>You can also increase the Cassandra Source connector <strong>batch.size</strong>, and the <strong>query.executors</strong>, and adjust the memory cache settings, the cache size with <strong>cache.max.capacity</strong>, the entry retention duration <strong>cache.expire.after.ms</strong> and the number of MD5 digest per primary key entry with <strong>cache.max.digest</strong>.</p>
 </div>
 </div>
 </div>
