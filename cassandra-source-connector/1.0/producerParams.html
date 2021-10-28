@@ -143,7 +143,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic prefix. The keyspace and table names are appended to that prefix to build the topic name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic name prefix. The &lt;keyspace_name&gt;.&lt;table_name&gt; is appended to that prefix to build the topic name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
 </tr>
@@ -158,6 +158,24 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pulsar batching delay in milliseconds. Pulsar batching is enabled when this value is greater than zero.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarKeyBasedBatcher</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When true, use the Pulsar KEY_BASED BatchBuilder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarMaxPendingMessages</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar maximum size of a queue holding pending messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarMaxPendingMessagesAcrossPartitions</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar maximum number of pending messages across partitions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">50000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
