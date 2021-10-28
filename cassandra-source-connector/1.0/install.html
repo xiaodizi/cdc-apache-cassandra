@@ -193,6 +193,12 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic name prefix. The &lt;keyspace_name&gt;.&lt;table_name&gt; is appended to that prefix to build the topic name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcWorkingDir</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CDC working directory where the last sent offset is saved, and where the archived and errored commitlogs files are copied.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
@@ -217,10 +223,10 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The event topic name prefix. The &lt;keyspace_name&gt;.&lt;table_name&gt; is appended to that prefix to build the topic name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>maxInflightMessagesPerTask</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of in-flight messages per commitlog processing task.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16384</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
