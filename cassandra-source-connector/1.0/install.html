@@ -531,9 +531,37 @@ the pulsar connectors directory or upload it. You have to specify the following 
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query.backoffInMs</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Retry backoff in milliseconds when there is not enough Cassandra replicas to perform the query. (Capped exponential jittered backoff)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query.executors</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The number of concurrent queries to be sent to Cassandra</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The initial and maximum number of threads to execute concurrent Cassandra queries</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query.maxBackoffInSec</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum backoff delay in seconds when there is not enough Cassandra replicas to perform the query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3600</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query.maxMobileAvgLatency</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum mobile average CQL query latency beyond which the number of executor is decreased</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>query.minMobileAvgLatency</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum mobile average CQL query latency beyond which the number of executor is increased</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
 </tr>
@@ -560,7 +588,7 @@ the pulsar connectors directory or upload it. You have to specify the following 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events.subscription.type</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The pulsar events topic subscription type, with a default set to Key_Shared (case sensitive).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pulsar events topic subscription type, with a default set to Key_Shared (case sensitive) for a non-partitioned events topic. If your events topic is partitioned, you should set subscription type to Failover</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[Exclusive, Shared, Failover, Key_Shared]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Key_Shared</p></td>
