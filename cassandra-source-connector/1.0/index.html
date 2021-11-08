@@ -148,7 +148,7 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://pulsar.a
 <p>Does not replay logged batches</p>
 </li>
 <li>
-<p>Does not sync data available before starting the CDC producer.</p>
+<p>Does not sync data available before starting the CDC agent.</p>
 </li>
 <li>
 <p>Does not manage time-to-live</p>
@@ -169,7 +169,7 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://pulsar.a
 <div class="ulist">
 <ul>
 <li>
-<p>An event producer deployed as a JVM agent on each Cassandra data node.</p>
+<p>An change agent deployed as a JVM agent on each Cassandra data node.</p>
 </li>
 <li>
 <p>A Cassandra source connector deployed in your streaming platform.</p>
@@ -187,7 +187,7 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://pulsar.a
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>When CDC is enabled for a given Cassandra table, the event producer running on each node reads the Cassandra commitlog files and emits a message for each Cassandra mutation
+<p>When CDC is enabled for a given Cassandra table, the change agent running on each node reads the Cassandra commitlog files and emits a message for each Cassandra mutation
 in a per-table events topic.</p>
 </li>
 <li>
@@ -214,25 +214,25 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <h3 id="_deployment_matrix"><a class="anchor" href="#_deployment_matrix"></a>Deployment matrix</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Streaming platform</th>
-<th class="tableblock halign-left valign-top">Cassandra v3.x producer</th>
-<th class="tableblock halign-left valign-top">Cassandra v4.x producer</th>
-<th class="tableblock halign-left valign-top">Source connector</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/producer-v3-pulsar">producer-v3-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/producer-v4-pulsar">producer-v4-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/source-pulsar">source-pulsar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra v3.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/agent-v3-pulsar">agent-c3-luna</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra v4.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/agent-v4-pulsar">agent-c4-luna</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cassandra-source-connector/tree/master/agent-dse4-pulsar">agent-dse4-luna</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -336,7 +336,7 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <p>Does not support range deletes</p>
 </li>
 <li>
-<p>Does not sync data available before starting the CDC producer.</p>
+<p>Does not sync data available before starting the CDC agent.</p>
 </li>
 </ul>
 </div>

@@ -111,7 +111,7 @@
 <h2 id="_producer_metrics"><a class="anchor" href="#_producer_metrics"></a>Producer Metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CDC producer JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcProducer</strong> with the following metrics:</p>
+<p>The CDC JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcAgent</strong> with the following metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -128,57 +128,57 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sentMutations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SentMutations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of Cassandra mutations successfully sent to the streaming platform.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sentErrors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SentErrors</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of errors when sending mutations to the streaming platform.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">commitLogReadErrors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CommitLogReadErrors</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of unrecoverable commitlog file reads.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">skippedMutations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SkippedMutations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of ignored mutations because the primary key has an unsupported column type.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">executedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ExecutedTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Counter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number of executed task to process commitlog files.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">submittedTasksGauge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SubmittedTasksGauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The current umber of submitted tasks to the dedicated thread pool.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxSubmittedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaxSubmittedTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of submitted tasks.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pendingTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PendingTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The current number of pending tasks to re-process commitlog files.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxPendingTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaxPendingTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of pending tasks.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">uncleanedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UncleanedTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The current number of tasks for which processed commitlog file have not yet been removed from the cdc_raw directory.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxUncleanedTasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaxUncleanedTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of uncleaned tasks.</p></td>
 </tr>
@@ -187,10 +187,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_source_connector_metrics"><a class="anchor" href="#_source_connector_metrics"></a>Source Connector metrics</h2>
+<h2 id="_pulsar_source_connector_metrics"><a class="anchor" href="#_pulsar_source_connector_metrics"></a>Pulsar Source Connector metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Cassandra Source Connector also publishes per message metrics:</p>
+<p>The Cassandra Source Connector for Pulsar also publishes per message metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -205,16 +205,32 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cache_use</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 when hitting the mutation cache, 0 otherwise.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache_hits</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of mutation cache hits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache_misses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of mutation cache misses.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache_evictions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of mutation cache evictions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache_size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of entries in the mutation cache.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">query_latency</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CQL query latency in milliseconds to fetch the updated row. This is 0 when hitting the memory cache.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">query_executors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of threads available to execute the CQL queries.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">replication_latency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the pulsar publication time minus the cassandra mutation writetime).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the source connector processing time minus the cassandra mutation writetime).</p></td>
 </tr>
 </tbody>
 </table>
@@ -255,7 +271,7 @@ pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="
 <div class="ulist">
 <ul>
 <li>
-<p>The producer agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.</p>
+<p>The CDC change agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.</p>
 </li>
 <li>
 <p><a href="https://docs.datastax.com/en/opscenter/6.8/">DSE Ops Center</a> can collect these exposed metrics for visualization and alerts, and pass them on to <a href="https://docs.datastax.com/en/monitoring/doc/monitoring/opsUseMetricsCollector.html">DSE Metrics Collector</a> for additional integration with Prometheus and Grafana.</p>

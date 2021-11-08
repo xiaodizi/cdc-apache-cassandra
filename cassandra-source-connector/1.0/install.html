@@ -147,8 +147,8 @@ If you agree, enable the <strong>Terms</strong> checkbox and click the download 
 <pre class="highlightjs highlight"><code class="language-no-highlight hljs" data-lang="no-highlight">LICENSE
 README.md
 THIRD-PARTY.txt
-producer-v3-pulsar-&lt;version&gt;-SNAPSHOT-all.jar
-producer-v4-pulsar-&lt;version&gt;-SNAPSHOT-all.jar
+agent-c3-luna-&lt;version&gt;-SNAPSHOT-all.jar
+agent-c4-luna-&lt;version&gt;-SNAPSHOT-all.jar
 pulsar-cassandra-source-&lt;version&gt;-SNAPSHOT.nar</code></pre>
 </div>
 </div>
@@ -158,18 +158,18 @@ pulsar-cassandra-source-&lt;version&gt;-SNAPSHOT.nar</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_starting_cassandra_with_the_producer_agent"><a class="anchor" href="#_starting_cassandra_with_the_producer_agent"></a>Starting Cassandra with the producer agent</h2>
+<h2 id="_starting_cassandra_with_the_cdc_agent"><a class="anchor" href="#_starting_cassandra_with_the_cdc_agent"></a>Starting Cassandra with the CDC agent</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All data nodes of your Cassandra datacenter must run the producer JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra nodes with the appropriate producer binary matching your
+<p>All data nodes of your Cassandra datacenter must run the CDC JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra nodes with the appropriate CDC agent binary matching your
 Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 </div>
 <div class="paragraph">
-<p>As a Java agent, the CDC producer parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Apache Pulsar on Cassandra version 4.0 nodes:</p>
+<p>As a Java agent, the CDC agent parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Apache Pulsar on Cassandra version 4.0 nodes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/producer-v4-pulsar-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-luna-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
 </div>
 </div>
 </div>
@@ -178,7 +178,7 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 <h2 id="_producer_parameters"><a class="anchor" href="#_producer_parameters"></a>Producer Parameters</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Table Producer Parameters</caption>
+<caption class="title">Table 1. Table Change Agent Parameters</caption>
 <colgroup>
 <col style="width: 28.5714%;">
 <col style="width: 42.8571%;">
@@ -335,7 +335,7 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_the_kafka_cassandra_source_connector"><a class="anchor" href="#_deploy_the_kafka_cassandra_source_connector"></a>Deploy the Kafka Cassandra Source Connector</h2>
+<h2 id="_deploy_the_cassandra_source_connector"><a class="anchor" href="#_deploy_the_cassandra_source_connector"></a>Deploy the Cassandra Source Connector</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In order to deploy the Cassandra Source Connector NAR file in your Pulsar cluster, you can copy it into
@@ -920,7 +920,7 @@ datastax-java-driver.advanced.metrics.session.enabled.1=b</code></pre>
 <h2 id="_scaling_up_your_configuration"><a class="anchor" href="#_scaling_up_your_configuration"></a>Scaling up your configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to increase the throughput of the CDC replication on multiple Pulsar brokers, you can configure <a href="https://pulsar.apache.org/docs/en/admin-api-topics/#manage-partitioned-topics">Pulsar partitioned topics</a> before starting the CDC producers. Depending on the desired latency, you can adjust the <strong>pulsarBatchDelayInMs</strong> to group messages.</p>
+<p>In order to increase the throughput of the CDC replication on multiple Pulsar brokers, you can configure <a href="https://pulsar.apache.org/docs/en/admin-api-topics/#manage-partitioned-topics">Pulsar partitioned topics</a> before starting the CDC agent. Depending on the desired latency, you can adjust the <strong>pulsarBatchDelayInMs</strong> to group messages.</p>
 </div>
 <div class="paragraph">
 <p>You can also increase the Cassandra Source connector <strong>batch.size</strong>, and the <strong>query.executors</strong>, and adjust the memory cache settings, the cache size with <strong>cache.max.capacity</strong>, the entry retention duration <strong>cache.expire.after.ms</strong> and the number of MD5 digest per primary key entry with <strong>cache.max.digest</strong>.</p>

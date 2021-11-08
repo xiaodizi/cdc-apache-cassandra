@@ -157,7 +157,7 @@ With CDC, your apps can consume data from an Apache Cassandra table and put the 
 <p>Does not manage table truncates</p>
 </li>
 <li>
-<p>Does not sync data available before starting the CDC producer.</p>
+<p>Does not sync data available before starting the CDC agent.</p>
 </li>
 <li>
 <p>Does not manage TTL</p>
@@ -171,7 +171,7 @@ With CDC, your apps can consume data from an Apache Cassandra table and put the 
 <div class="sect2">
 <h3 id="_whats_happen_if_apache_pulsar_is_unavailable"><a class="anchor" href="#_whats_happen_if_apache_pulsar_is_unavailable"></a>What&#8217;s happen if Apache Pulsar is unavailable?</h3>
 <div class="paragraph">
-<p>If Apache Pulsar is not available or unreachable, the CDC producer agent keep trying to send messages, and commitlog files accumulate in the cdc_raw directory. When the disk space of the cdc_raw directory reach your <strong>cdc_total_space_in_mb</strong> cassandra settings (less than 4Gb by default), writes to CDC-enabled tables fails with a <strong>CDCWriteException</strong>, and you get the following warning message in Cassandra logs:</p>
+<p>If Apache Pulsar is not available or unreachable, the CDC agent keep trying to send messages, and commitlog files accumulate in the cdc_raw directory. When the disk space of the cdc_raw directory reach your <strong>cdc_total_space_in_mb</strong> cassandra settings (less than 4Gb by default), writes to CDC-enabled tables fails with a <strong>CDCWriteException</strong>, and you get the following warning message in Cassandra logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -182,7 +182,7 @@ With CDC, your apps can consume data from an Apache Cassandra table and put the 
 <p>In order to avoid or recover from this situation, you should increase the <strong>cdc_total_space_in_mb</strong> and restart the node, and also increase the write throughput to Pulsar or decrease the write throughput to your node.</p>
 </div>
 <div class="paragraph">
-<p>Increasing the Pulsar write throughput may involve the CDC producer agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), your Pulsar configuration (the number of partition of your topics, the connector max throughput, the Cassandra Source Connector batching and cache settings).</p>
+<p>Increasing the Pulsar write throughput may involve the CDC agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), your Pulsar configuration (the number of partition of your topics, the connector max throughput, the Cassandra Source Connector batching and cache settings).</p>
 </div>
 <div class="paragraph">
 <p>In last resort, if losing data is acceptable in your CDC pipeline, remove commitlog files from the cdc_raw directory, restarting the node is not needed in this case.</p>
@@ -203,7 +203,7 @@ With CDC, your apps can consume data from an Apache Cassandra table and put the 
 <div class="sect2">
 <h3 id="_which_kubernetes_platforms_are_supported_by_datastax_cassandra_source_connector"><a class="anchor" href="#_which_kubernetes_platforms_are_supported_by_datastax_cassandra_source_connector"></a>Which Kubernetes platforms are supported by DataStax Cassandra Source Connector?</h3>
 <div class="paragraph">
-<p>They include Minikube, K8d, Kind, Google Kubernetes Engine (GKE), Microsoft Azure Kubernetes Service, Amazon Kubernetes Service (AKS), and other commonly used platforms. You can also deploy the CDC producer with the <a href="https://github.com/datastax/cass-operator">cass-operator</a>.</p>
+<p>They include Minikube, K8d, Kind, Google Kubernetes Engine (GKE), Microsoft Azure Kubernetes Service, Amazon Kubernetes Service (AKS), and other commonly used platforms. You can also deploy the CDC agent with the <a href="https://github.com/datastax/cass-operator">cass-operator</a>.</p>
 </div>
 </div>
 <div class="sect2">
