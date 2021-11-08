@@ -132,13 +132,6 @@
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>key.converter</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message key to the data topic. This setting is experimental for advanced user only.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>keyspace</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra keyspace name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
@@ -149,13 +142,6 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>table</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra table name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value.converter</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message value to the data topic. This setting is experimental for advanced user only.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -209,6 +195,13 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>key.converter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message key to the data topic. This setting is experimental for advanced user only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>loadBalancing.localDc</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The datacenter name (commonly dc1, dc2, etc.) local to the machine on which the connector is running</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
@@ -249,6 +242,13 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[1,&#8230;&#8203;]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>value.converter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converter class used to write the message value to the data topic. This setting is experimental for advanced user only.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>batch.size</strong></p></td>
