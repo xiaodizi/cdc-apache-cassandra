@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing the DataStax Cassandra Source Connector :: DataStax Cassandra Source Connector documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cassandra-source-connector/1.0/install.html">
+    <title>Installing the DataStax CDC for Apache Cassandra :: DataStax Cassandra Source Connector documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cdc-apache-cassandra/1.0/install.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -48,26 +48,26 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cassandra-source-connector" data-version="1.0">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">DataStax Cassandra Source Connector (beta) documentation</a></h3>
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item toggler" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">About DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="index.html">About DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="install.html">Installing the DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="install.html">Installing the DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="faqs.html">Cassandra Source Connector FAQs</a>
+    <a class="nav-link" href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a>
   </li>
 </ul>
   </li>
@@ -76,12 +76,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">DataStax Cassandra Source Connector (beta) documentation</span>
+    <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
     <span class="version">1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">DataStax Cassandra Source Connector (beta) documentation</span>
+      <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">1.0</a>
@@ -98,17 +98,17 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">DataStax Cassandra Source Connector (beta) documentation</a></li>
-    <li><a href="install.html">Installing the DataStax Cassandra Source Connector</a></li>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></li>
+    <li><a href="install.html">Installing the DataStax CDC for Apache Cassandra</a></li>
   </ul>
 </nav>
   <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/install.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Installing the DataStax Cassandra Source Connector</h1>
+<h1 class="page">Installing the DataStax CDC for Apache Cassandra</h1>
 <div class="sect1">
-<h2 id="_download_the_datastax_cassandra_source_connector"><a class="anchor" href="#_download_the_datastax_cassandra_source_connector"></a>Download the Datastax Cassandra Source Connector</h2>
+<h2 id="_download_the_datastax_change_agent_for_apache_cassandra"><a class="anchor" href="#_download_the_datastax_change_agent_for_apache_cassandra"></a>Download the DataStax Change Agent for Apache Cassandra</h2>
 <div class="sectionbody">
 <div class="admonitionblock important">
 <table>
@@ -124,58 +124,91 @@ By downloading this DataStax product, you agree to the terms of the open-source 
 </table>
 </div>
 <div class="paragraph">
-<p>Perform the following steps on a Pulsar Connect node:</p>
+<p>Perform the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Download the tar file from the <a href="https://downloads.datastax.com/#csc">DataStax downloads site</a>.
-If you agree, enable the <strong>Terms</strong> checkbox and click the download icon.</p>
-</li>
-<li>
-<p>Extract the files:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">tar zxf cassandra-source-connector-&lt;version&gt;.tar.gz</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following files are unpacked into a directory such as <code>cassandra-source-connector-&lt;version&gt;</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-no-highlight hljs" data-lang="no-highlight">LICENSE
-README.md
-THIRD-PARTY.txt
-agent-c3-luna-&lt;version&gt;-all.jar
-agent-c4-luna-&lt;version&gt;-all.jar
-pulsar-cassandra-source-&lt;version&gt;.nar</code></pre>
-</div>
-</div>
+<p>Download the change agent that matches your Cassandra type and version,  <strong>agent-&lt;type&gt;-&lt;version&gt;.jar</strong> JAR file,  file from the <a href="https://downloads.datastax.com/cdc">DataStax downloads page</a> !!UPDATE-WITH-CORRECT-INFO!!.</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>The following files are available:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Cassandra type</th>
+<th class="tableblock halign-left valign-top">Streaming platform</th>
+<th class="tableblock halign-left valign-top">JAR file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 3.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-luna-&lt;version&gt;.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 4.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-luna-&lt;version&gt;.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-luna-&lt;version&gt;.jar</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_starting_cassandra_with_the_cdc_agent"><a class="anchor" href="#_starting_cassandra_with_the_cdc_agent"></a>Starting Cassandra with the CDC agent</h2>
+<h2 id="_starting_cassandra_with_the_change_agent_for_apache_cassandra"><a class="anchor" href="#_starting_cassandra_with_the_change_agent_for_apache_cassandra"></a>Starting Cassandra with the Change Agent for Apache Cassandra</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All data nodes of your Cassandra datacenter must run the CDC JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra nodes with the appropriate CDC agent binary matching your
-Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
+<p>All data nodes of your Cassandra/DSE datacenter must run the change agent as a JVM agent to send mutations into the events topic of your streaming software. Start your Cassandra/DSE nodes with the appropriate producer binary matching your Cassandra/DSE version (3.11 or 4.0, 6.8.16) and your streaming platform (Luna Streaming/Apache Pulsar).</p>
 </div>
 <div class="paragraph">
-<p>As a Java agent, the CDC agent parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Apache Pulsar on Cassandra version 4.0 nodes:</p>
+<p>As a Java agent, the change agent parameters take place after the jar file name in the form of a comma separated list of paramName=paramValue. Here is an example for Luna Streaming/Apache Pulsar on Cassandra version 4.0 nodes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-luna-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>For the full set of configuration options, see <a href="agentParams.html" class="page">Change Agent Parameters</a></p>
+</div>
+<div class="paragraph">
+<p>In addition to configuring the change agent, you also must enable CDC on the Cassandra node. You do this by setting <strong>cdc_enabled</strong> to true in the cassandra.yaml file.</p>
+</div>
+<div class="paragraph">
+<p>For Cassandra 4.X and DSE 6.8.16+ you can configure the commit log sync period. This controls how often the commit logs are made available for CDC processing. The default is 10 seconds. To reduce the latency from when the table is updated to when the event is availabe in the data topic, lower the period to, for example, 2 seconds.</p>
+</div>
+<div class="paragraph">
+<p>The total amount of CDC data stored is controlled by the <strong>cdc_total_space_in_mb</strong> parameter. If the amount of unprocessed CDC reaches this threshold, writes to CDC enabled tables will be rejected. Make sure you have the change agent installed on the node when CDC is enabled. Without the change agent to process the CDC data, the space used will grow until it hits this limit and then writes to CDC-enabled tables will stop.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example set of configurations for the cassandra.yaml file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">    cdc_enabled: true
+    commitlog_sync_period_in_ms: 2000
+    cdc_total_space_in_mb: 50000</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_producer_parameters"><a class="anchor" href="#_producer_parameters"></a>Producer Parameters</h2>
+<h2 id="_change_agent_parameters"><a class="anchor" href="#_change_agent_parameters"></a>Change Agent Parameters</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Table Change Agent Parameters</caption>
@@ -335,51 +368,138 @@ Cassandra version (3.11 or 4.0) and your streaming platform (Apache Pulsar).</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_the_cassandra_source_connector"><a class="anchor" href="#_deploy_the_cassandra_source_connector"></a>Deploy the Cassandra Source Connector</h2>
+<h2 id="_download_the_datastax_cassandra_source_connector_for_apache_pulsar"><a class="anchor" href="#_download_the_datastax_cassandra_source_connector_for_apache_pulsar"></a>Download the DataStax Cassandra Source Connector for Apache Pulsar</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0 license agreement</a>.
+By downloading this DataStax product, you agree to the terms of the open-source Apache-2.0 license agreement.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Perform the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the <strong>pulsar-cassandra-source-&lt;version&gt;.nar.tar</strong> tar file from the <a href="https://downloads.datastax.com/cdc">DataStax downloads page</a> !!UPDATE-WITH-CORRECT-INFO!!.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_the_source_connector_for_apache_pulsar"><a class="anchor" href="#_deploy_the_source_connector_for_apache_pulsar"></a>Deploy the Source Connector for Apache Pulsar</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to deploy the Cassandra Source Connector NAR file in your Pulsar cluster, you can copy it into
-the pulsar connectors directory or upload it. You have to specify the following parameters:</p>
+<p>In order to deploy the Source Connector NAR file in your Pulsar cluster, you upload it to a Luna Streaming/Pulsar using the <strong>pulsar-admin sources create</strong> command. You need to deploy a source connector for each CDC-enabled table.</p>
+</div>
+<div class="paragraph">
+<p>For each CDC-enabled table, the change agent will send events to the events topic. The topic name is determined by the <strong>topicPrefix</strong> setting in the agent (default: events-). The &lt;keyspace_name&gt;.&lt;table_name&gt; is appended to the prefix to build the topic name.</p>
+</div>
+<div class="paragraph">
+<p>You have to specify the following parameters:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The connector name- remember, you have one connector per replicated Cassandra table</p>
+<p>Connector name. You have one connector per CDC-enabled Cassandra table, make sure to use a unique name.</p>
 </li>
 <li>
-<p>The destination topic for Cassandra data</p>
+<p>Previously downloaded Cassandra Source connector NAR file.</p>
 </li>
 <li>
-<p>The <a href="cfgCassandraSource.html" class="page">Cassandra Source connector configuration</a></p>
+<p>Pulsar tenant and namespace where the connector will run.</p>
+</li>
+<li>
+<p>Destination topic for Cassandra data (data topic).</p>
+</li>
+<li>
+<p>Number of instances (parallelism) of the connector. For high-volume tables you may need to run multiple connector instances to prevent a growing backlog on the events topic.</p>
+</li>
+<li>
+<p>Name of the events topic the connector will read from.</p>
+</li>
+<li>
+<p>Keyspace and table associated with the events topics.</p>
+</li>
+<li>
+<p>Connection information (ex contact points and DC information) for Cassandra.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">pulsar-admin source localrun \
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">pulsar-admin source create \
+--name cassandra-source-1 \
 --archive /path/to/pulsar-cassandra-source-&lt;version&gt;.nar \
 --tenant public \
 --namespace default \
---name cassandra-source-1 \
---destination-topic-name data-ks1.table1 \
---source-config '{"contactPoints":"localhost:9042", "localDc":"datacenter1", "keyspace":"ks1", "table":"table1", "eventsTopicPrefix": "persistent://public/default/events-", "eventsSubscriptionName":"sub1", "keyConverter":"com.datastax.oss.pulsar.source.converters.AvroConverter","valueConverter":"com.datastax.oss.pulsar.source.converters.JsonConverter"}'</code></pre>
+--destination-topic-name public/default/data-ks1.table1 \
+--parallelism 1 \
+--source-config '{
+    "events.topic": "persistent://public/default/events-cdc-ks1.table1",
+    "keyspace": "ks1",
+    "table": "table1",
+    "contactPoints": "localhost:9042",
+    "loadBalancing.localDc": "DC1",
+    "auth.provider": "PLAIN",
+    "auth.username\": "&lt;username&gt;",
+    "auth.password\": "&lt;password&gt;",
+}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then check your connector is properly running with no error:</p>
+<p>Then check your connector is in the running state with no errors:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">pulsar-admin source status --name cassandra-source-1</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Once the connector is running, it will process events from the events topic and publish the result to the data topic.</p>
+</div>
+<div class="paragraph">
+<p>For the full set of source configuration options, see <a href="cfgCassandraSource.html" class="page">DataStax Cassandra Source Connector for Apache Pulsar settings</a>. For the full set of Cassandra authentication options, see <a href="cfgCassandraAuth.html" class="page">Cassandra Authentication settings</a>. For the full set of Cassandra SSL settings, see <a href="cfgCassandraSSL.html" class="page">Cassandra SSL/TLS settings</a>. For advanced configuration of the Cassandra driver in the source connector, see <a href="cfgCassandraJavaDriverSettings.html" class="page">Pass Cassandra Source Connector for Apache Pulsar settings directly to the DataStax Java driver</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cassandra_source_connector_settings"><a class="anchor" href="#_cassandra_source_connector_settings"></a>Cassandra Source Connector settings</h2>
+<h2 id="_enabling_and_disabling_cdc_on_a_table"><a class="anchor" href="#_enabling_and_disabling_cdc_on_a_table"></a>Enabling and disabling CDC on a table</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the change agent is installed and the connector is running, you can enable or disabled CDC on table using the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">CREATE TABLE foo (a int, b text, PRIMARY KEY(a)) WITH cdc=true;
+
+ALTER TABLE foo WITH cdc=true;
+
+ALTER TABLE foo WITH cdc=false;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When CDC is enabled on a table, updates to that table are sent by the change agent to the Cassandra source connector which further processes the event and then sends it to the data topic when it can be processed by other connectors (for example, Elasticsearch).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_datastax_cassandra_source_connector_for_apache_pulsar_settings"><a class="anchor" href="#_datastax_cassandra_source_connector_for_apache_pulsar_settings"></a>DataStax Cassandra Source Connector for Apache Pulsar settings</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Table Cassandra Source Connector settings</caption>
+<caption class="title">Table 2. Table DataStax Cassandra Source Connector for Apache Pulsar settings</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 37.5%;">
@@ -783,10 +903,10 @@ the pulsar connectors directory or upload it. You have to specify the following 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pass_pulsar_connector_settings_directly_to_the_datastax_java_driver"><a class="anchor" href="#_pass_pulsar_connector_settings_directly_to_the_datastax_java_driver"></a>Pass Pulsar Connector settings directly to the DataStax Java driver</h2>
+<h2 id="_pass_cassandra_source_connector_for_apache_pulsar_settings_directly_to_the_datastax_java_driver"><a class="anchor" href="#_pass_cassandra_source_connector_for_apache_pulsar_settings_directly_to_the_datastax_java_driver"></a>Pass Cassandra Source Connector for Apache Pulsar settings directly to the DataStax Java driver</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In your DataStax Apache® Pulsar Connector configuration file, you can directly pass settings to the DataStax Java driver by using the <code>datastax-java-driver</code> prefix.
+<p>In your DataStax Cassandra Source Connector for Apache Pulsar configuration file, you can directly pass settings to the DataStax Java driver by using the <code>datastax-java-driver</code> prefix.
 For example:</p>
 </div>
 <div class="listingblock">
@@ -797,10 +917,10 @@ For example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mapping_pulsar_connector_settings_to_java_driver_properties"><a class="anchor" href="#_mapping_pulsar_connector_settings_to_java_driver_properties"></a>Mapping Pulsar Connector settings to Java driver properties</h2>
+<h2 id="_mapping_cassandra_source_connector_for_apache_pulsar_settings_to_java_driver_properties"><a class="anchor" href="#_mapping_cassandra_source_connector_for_apache_pulsar_settings_to_java_driver_properties"></a>Mapping Cassandra Source Connector for Apache Pulsar settings to Java driver properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following table identifies functionally equivalent DataStax Apache Pulsar Connector and DataStax Java driver settings.</p>
+<p>The following table identifies functionally equivalent DataStax Cassandra Source Connector for Apache Pulsar and DataStax Java driver settings.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -809,8 +929,8 @@ For example:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you define both in your configuration, the Pulsar Connector setting take precedence over the <code>datastax-java-driver.property-name</code>.
-If you do not provide either in your configuration, Pulsar Connector defaults are in effect.
+If you define both in your configuration, the Source Connector setting take precedence over the <code>datastax-java-driver.property-name</code>.
+If you do not provide either in your configuration, Source Connector defaults are in effect.
 </td>
 </tr>
 </table>
@@ -825,7 +945,7 @@ If you do not provide either in your configuration, Pulsar Connector defaults ar
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">DataStax Apache Pulsar Connector setting</th>
+<th class="tableblock halign-left valign-top">DataStax Cassandra Source Connector for Apache Pulsar</th>
 <th class="tableblock halign-left valign-top">Using datastax-java-driver prefix</th>
 </tr>
 </thead>
@@ -861,7 +981,7 @@ If you do not provide either in your configuration, Pulsar Connector defaults ar
 </tbody>
 </table>
 <div class="paragraph">
-<p>There is a difference between the Pulsar Connector&#8217;s <code>contactPoints</code> setting and the Java driver&#8217;s <code>datastax-java-driver.basic.contact-points</code>.
+<p>There is a difference between the Source Connector&#8217;s <code>contactPoints</code> setting and the Java driver&#8217;s <code>datastax-java-driver.basic.contact-points</code>.
 For <code>contactPoints</code>, the value of the <code>port</code> is appended to every host provided by this setting.
 For <code>datastax-java-driver.basic.contact-points</code>, you must provide the fully qualified contact points (<code>host:port</code>).</p>
 </div>
@@ -920,10 +1040,19 @@ datastax-java-driver.advanced.metrics.session.enabled.1=b</code></pre>
 <h2 id="_scaling_up_your_configuration"><a class="anchor" href="#_scaling_up_your_configuration"></a>Scaling up your configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to increase the throughput of the CDC replication on multiple Pulsar brokers, you can configure <a href="https://pulsar.apache.org/docs/en/admin-api-topics/#manage-partitioned-topics">Pulsar partitioned topics</a> before starting the CDC agent. Depending on the desired latency, you can adjust the <strong>pulsarBatchDelayInMs</strong> to group messages.</p>
+<p>If your connector is not keeping up and the messages in the events topic are growing, you can increase the number of connector instances using the <strong>parallelism</strong> parameter. Pulsar ensures in-order processing using Key_Shared subscriptions.</p>
 </div>
 <div class="paragraph">
-<p>You can also increase the Cassandra Source connector <strong>batch.size</strong>, and the <strong>query.executors</strong>, and adjust the memory cache settings, the cache size with <strong>cache.max.capacity</strong>, the entry retention duration <strong>cache.expire.after.ms</strong> and the number of MD5 digest per primary key entry with <strong>cache.max.digest</strong>.</p>
+<p>If the volume of data in the events topic is very high, you can <a href="https://pulsar.apache.org/docs/en/admin-api-topics/#manage-partitioned-topics">partition</a> the events topic to distribute the load across multiple Pulsar brokers. You should do this before starting the change agent, since by default Puslar will auto-create non-partitioned topics. If you are using partitioned topics, change <strong>events.subscription.type</strong> to "Failover" to ensure in-order delivery when running multiple connector instances.</p>
+</div>
+<div class="paragraph">
+<p>To further improve the throughput, you can adjust the <strong>pulsarBatchDelayInMs</strong> in the change agent to batch messages in the change agent before sending them to Pulsar.</p>
+</div>
+<div class="paragraph">
+<p>To improve performance on individual connector instances as they read data from Cassandra, you can adjust the <strong>batch.size</strong>, and the <strong>query.executors</strong>. Increasing these values from their defaults will increase parallelism within the connector instances.</p>
+</div>
+<div class="paragraph">
+<p>The deduplication cache is configurable, including the cache size with <strong>cache.max.capacity</strong>, the entry retention duration <strong>cache.expire.after.ms</strong> and the number of MD5 digest per primary key entry with <strong>cache.max.digest</strong>.</p>
 </div>
 </div>
 </div>

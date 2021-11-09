@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Monitor DataStax Cassandra Source Connector :: DataStax Cassandra Source Connector documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cassandra-source-connector/1.0/monitor.html">
+    <title>Monitor DataStax CDC for Apache Cassandra :: DataStax Cassandra Source Connector documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cdc-apache-cassandra/1.0/monitor.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -48,26 +48,26 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cassandra-source-connector" data-version="1.0">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">DataStax Cassandra Source Connector (beta) documentation</a></h3>
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item toggler" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">About DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="index.html">About DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="install.html">Installing the DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="install.html">Installing the DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor DataStax Cassandra Source Connector</a>
+    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="faqs.html">Cassandra Source Connector FAQs</a>
+    <a class="nav-link" href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a>
   </li>
 </ul>
   </li>
@@ -76,12 +76,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">DataStax Cassandra Source Connector (beta) documentation</span>
+    <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
     <span class="version">1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">DataStax Cassandra Source Connector (beta) documentation</span>
+      <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">1.0</a>
@@ -98,20 +98,20 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">DataStax Cassandra Source Connector (beta) documentation</a></li>
-    <li><a href="monitor.html">Monitor DataStax Cassandra Source Connector</a></li>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></li>
+    <li><a href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a></li>
   </ul>
 </nav>
   <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/monitor.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Monitor DataStax Cassandra Source Connector</h1>
+<h1 class="page">Monitor DataStax CDC for Apache Cassandra</h1>
 <div class="sect1">
-<h2 id="_producer_metrics"><a class="anchor" href="#_producer_metrics"></a>Producer Metrics</h2>
+<h2 id="_change_agent_metrics"><a class="anchor" href="#_change_agent_metrics"></a>Change Agent Metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CDC JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcAgent</strong> with the following metrics:</p>
+<p>The change agent is a JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcProducer</strong> with the following metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -187,10 +187,45 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_pulsar_source_connector_stats"><a class="anchor" href="#_pulsar_source_connector_stats"></a>Pulsar Source Connector stats</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Pulsar connector framework reports stats for each connector. You can view the stats for a connector like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">pulsar-admin source stats --name cassandra-source-1
+
+{
+  "numInstances" : 1,
+  "numRunning" : 0,
+  "instances" : [ {
+    "instanceId" : 0,
+    "status" : {
+      "running" : false,
+      "error" : "",
+      "numRestarts" : 0,
+      "numReceivedFromSource" : 0,
+      "numSystemExceptions" : 0,
+      "numSourceExceptions" : 0,
+      "numWritten" : 0,
+      "lastReceivedTime" : 0,
+      "workerId" : "pulsar-perf-aws-useast2-function-0"
+    }
+  } ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The stats <strong>numReceivedFromSource</strong> and <strong>numWritten</strong> indicate how many events have been processed by the source connector. If the connector has errors, the counts are shown. A description of the last seen error is displayed in the <strong>error</strong> field.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_pulsar_source_connector_metrics"><a class="anchor" href="#_pulsar_source_connector_metrics"></a>Pulsar Source Connector metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Cassandra Source Connector for Pulsar also publishes per message metrics:</p>
+<p>The Source Connector for Apache Pulsar also publishes per message metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -271,7 +306,7 @@ pulsar_source_user_metric__sum{tenant="public",namespace="public/default",name="
 <div class="ulist">
 <ul>
 <li>
-<p>The CDC change agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.</p>
+<p>The change agent exposes metrics with <a href="https://docs.datastax.com/en/landing_page/doc/landing_page/metricsandalerts.html">JMX</a>, a technology within Java that provides tools for managing and monitoring applications.</p>
 </li>
 <li>
 <p><a href="https://docs.datastax.com/en/opscenter/6.8/">DSE Ops Center</a> can collect these exposed metrics for visualization and alerts, and pass them on to <a href="https://docs.datastax.com/en/monitoring/doc/monitoring/opsUseMetricsCollector.html">DSE Metrics Collector</a> for additional integration with Prometheus and Grafana.</p>
