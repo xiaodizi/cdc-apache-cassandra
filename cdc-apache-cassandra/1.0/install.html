@@ -121,10 +121,18 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Download the change agent that matches your Cassandra type and version, <code>agent-&lt;type&gt;-&lt;version&gt;.jar</code> file,  file from the <a href="https://downloads.datastax.com/#cdc">DataStax downloads page</a>.</p>
+<p>Perform the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the change agent tar file from the downloads.datastax.com/#cassandra-change-agent
+[DataStax downloads page].</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>The following files are available:</p>
+<p>The following files are available in the tar file:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -142,21 +150,47 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 3.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-luna-&lt;version&gt;.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-pulsar-&lt;version&gt;-all.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 3.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-luna-&lt;version&gt;-all.jar</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 4.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-luna-&lt;version&gt;.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-pulsar-&lt;version&gt;-all.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 4.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-luna-&lt;version&gt;-all.jar</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-luna-&lt;version&gt;.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-pulsar-&lt;version&gt;-all.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-luna-&lt;version&gt;-all.jar</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Extract the file from the tar with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">tar xvf cassandra-change-agent-&lt;version&gt;.tar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the file that matches your Cassandra type and streaming platform.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -368,6 +402,8 @@ cdc_total_space_in_mb: 50000</code></pre>
 <div class="sect1">
 <h2 id="_download_csc_for_pulsar"><a class="anchor" href="#_download_csc_for_pulsar"></a>Download CSC for Pulsar</h2>
 <div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
 <p>IMPORTANT</p>
 </div>
@@ -378,14 +414,52 @@ cdc_total_space_in_mb: 50000</code></pre>
 </div>
 </div>
 </div>
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Download the <code>pulsar-cassandra-source-&lt;version&gt;.nar.tar</code> file from the <a href="https://downloads.datastax.com/#cdc">DataStax downloads page</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following files are available:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Streaming platform</th>
+<th class="tableblock halign-left valign-top">NAR file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar-cassandra-source-&lt;version&gt;.nar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">luna-cassandra-source-&lt;version&gt;.nar</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Extract the file from the tar with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">tar xvf cassandra-source-connector-&lt;version&gt;.tar</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Use the version that matches your streaming platform.</p>
 </div>
-<div class="sect1">
-<h2 id="_deploy_csc_for_pulsar"><a class="anchor" href="#_deploy_csc_for_pulsar"></a>Deploy CSC for Pulsar</h2>
-<div class="sectionbody">
+<div class="paragraph">
+<p>== Deploy CSC for Pulsar</p>
+</div>
 <div class="paragraph">
 <p>To deploy the CSC for Pulsar <code>NAR</code> file in your Pulsar cluster, upload it to Luna Streaming or Pulsar using the <code>pulsar-admin sources create</code> command.
 You need to deploy a CSC for Pulsar for each CDC-enabled table.</p>
@@ -467,11 +541,9 @@ For the full set of Cassandra authentication options, see <a href="cfgCassandraA
 For the full set of Cassandra SSL settings, see <a href="cfgCassandraSSL.html" class="page">Cassandra SSL/TLS settings</a>.
 For advanced configuration of the Cassandra driver in the CSC for Pulsar, see <a href="cfgCassandraJavaDriverSettings.html" class="page">Pass CSC for Pulsar settings directly to the DataStax Java driver</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Enabling and disabling CDC on a table</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_enabling_and_disabling_cdc_on_a_table"><a class="anchor" href="#_enabling_and_disabling_cdc_on_a_table"></a>Enabling and disabling CDC on a table</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Once the change agent is installed and the connector is running, you can enable or disabled CDC on table using the following commands:</p>
 </div>
@@ -491,11 +563,9 @@ For the full set of Cassandra authentication options, see <a href="cfgCassandraA
 For the full set of Cassandra SSL settings, see <a href="cfgCassandraSSL.html" class="page">Cassandra SSL/TLS settings</a>.
 For advanced configuration of the Cassandra driver in the CSC for Pulsar, see <a href="cfgCassandraJavaDriverSettings.html" class="page">Pass CSC for Pulsar settings directly to the DataStax Java driver</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Scaling up your configuration</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_scaling_up_your_configuration"><a class="anchor" href="#_scaling_up_your_configuration"></a>Scaling up your configuration</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>If your connector is not keeping up and the messages in the events topic are growing, increase the number of connector instances using the <code>parallelism</code> parameter.
 Pulsar ensures in-order processing using Key_Shared subscriptions.</p>
@@ -514,6 +584,8 @@ Increasing these values from their defaults will increase parallelism within the
 </div>
 <div class="paragraph">
 <p>The de-duplication cache is configurable, including the cache size with <code>cache.max.capacity</code>, the entry retention duration <code>cache.expire.after.ms</code> and the number of MD5 digest per primary key entry with <code>cache.max.digest</code>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
