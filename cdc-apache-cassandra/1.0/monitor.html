@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Monitor DataStax CDC for Apache Cassandra :: DataStax Cassandra Source Connector documentation</title>
+    <title>Monitor DataStax CDC for Apache Cassandra(R) :: DataStax Cassandra Source Connector documentation</title>
     <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cdc-apache-cassandra/1.0/monitor.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
@@ -53,21 +53,21 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></h3>
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item toggler" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">About DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="index.html">About CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="install.html">Installing the DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="install.html">Installing DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a>
+    <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
   </li>
 </ul>
   </li>
@@ -76,12 +76,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+    <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
     <span class="version">1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+      <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">1.0</a>
@@ -98,20 +98,20 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></li>
-    <li><a href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a></li>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="monitor.html">Monitor DataStax CDC for Apache Cassandra(R)</a></li>
   </ul>
 </nav>
   <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/monitor.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Monitor DataStax CDC for Apache Cassandra</h1>
+<h1 class="page">Monitor DataStax CDC for Apache Cassandra(R)</h1>
 <div class="sect1">
 <h2 id="_change_agent_metrics"><a class="anchor" href="#_change_agent_metrics"></a>Change Agent Metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The change agent is a JVM agent running in Cassandra nodes provides a dedicated MBean type=<strong>CdcProducer</strong> with the following metrics:</p>
+<p>The change agent is a JVM agent running in Apache Cassandra&#174; nodes provides a dedicated MBean type=<code>CdcProducer</code> with the following metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -155,7 +155,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SubmittedTasksGauge</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The current umber of submitted tasks to the dedicated thread pool.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The current number of submitted tasks to the dedicated thread pool.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MaxSubmittedTasks</p></td>
@@ -175,7 +175,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UncleanedTasks</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Gauge</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The current number of tasks for which processed commitlog file have not yet been removed from the cdc_raw directory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The current number of tasks for which processed commitlog file have not yet been removed from the <code>cdc_raw</code> directory.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MaxUncleanedTasks</p></td>
@@ -187,10 +187,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pulsar_source_connector_stats"><a class="anchor" href="#_pulsar_source_connector_stats"></a>Pulsar Source Connector stats</h2>
+<h2 id="_csc_for_pulsar_stats"><a class="anchor" href="#_csc_for_pulsar_stats"></a>CSC for Pulsar stats</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Pulsar connector framework reports stats for each connector. You can view the stats for a connector like this:</p>
+<p>The CSC for Pulsar framework reports stats for each connector. You can view the stats for a connector like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -217,15 +217,17 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The stats <strong>numReceivedFromSource</strong> and <strong>numWritten</strong> indicate how many events have been processed by the source connector. If the connector has errors, the counts are shown. A description of the last seen error is displayed in the <strong>error</strong> field.</p>
+<p>The stats <code>numReceivedFromSource</code> and <code>numWritten</code> indicate how many events have been processed by the CSC for Pulsar.
+If the connector has errors, the counts are shown.
+A description of the last seen error is displayed in the <code>error</code> field.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pulsar_source_connector_metrics"><a class="anchor" href="#_pulsar_source_connector_metrics"></a>Pulsar Source Connector metrics</h2>
+<h2 id="_csc_for_pulsar_metrics"><a class="anchor" href="#_csc_for_pulsar_metrics"></a>CSC for Pulsar metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Source Connector for Apache Pulsar also publishes per message metrics:</p>
+<p>The CSC for Pulsar also publishes per message metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -265,7 +267,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">replication_latency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the source connector processing time minus the cassandra mutation writetime).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the CSC for Pulsar processing time minus the cassandra mutation writetime).</p></td>
 </tr>
 </tbody>
 </table>

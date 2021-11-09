@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>DataStax CDC for Apache Cassandra FAQs :: DataStax Cassandra Source Connector documentation</title>
+    <title>CDC for Cassandra FAQs :: DataStax Cassandra Source Connector documentation</title>
     <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cdc-apache-cassandra/1.0/faqs.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
@@ -53,21 +53,21 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></h3>
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item toggler" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">About DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="index.html">About CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="install.html">Installing the DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="install.html">Installing DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a>
+    <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
   </li>
 </ul>
   </li>
@@ -76,12 +76,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+    <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
     <span class="version">1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+      <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">1.0</a>
@@ -98,19 +98,19 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></li>
-    <li><a href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a></li>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="faqs.html">CDC for Cassandra FAQs</a></li>
   </ul>
 </nav>
   <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/faqs.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">DataStax CDC for Apache Cassandra FAQs</h1>
+<h1 class="page">CDC for Cassandra FAQs</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you are new to DataStax CDC for Apache Cassandra, these FAQs are for you.</p>
+<p>If you are new to DataStax CDC for Apache Cassandra&#174;, these frequently asked questions are for you.</p>
 </div>
 </div>
 </div>
@@ -118,16 +118,17 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_what_is_datastax_cdc_for_apache_cassandra"><a class="anchor" href="#_what_is_datastax_cdc_for_apache_cassandra"></a>What is DataStax CDC for Apache Cassandra?</h3>
+<h3 id="_what_is_cdc_for_cassandra"><a class="anchor" href="#_what_is_cdc_for_cassandra"></a>What is CDC for Cassandra?</h3>
 <div class="paragraph">
-<p>The DataStax CDC for Apache Cassandra is a an open-source product from DataStax.</p>
+<p>The CDC for Cassandra is a an open-source product from DataStax.</p>
 </div>
 <div class="paragraph">
-<p>With CDC for Apache Cassandra, updates to data in an Apache Cassandra is put onto a Pulsar topic, which in turn can write the data to external targets such as Elastic, Snowflake, and other platforms. The Source Connector for Apache Pulsar component is simple, with a 1:1 correspondence between the Cassandra table and a single Pulsar topic.</p>
+<p>With CDC for Cassandra, updates to data in Apache Cassandra are put into a Pulsar topic, which in turn can write the data to external targets such as Elastic, Snowflake, and other platforms.
+The DataStax Cassandra Source Connector for Apache Pulsar&#174; component is simple, with a 1:1 correspondence between the Cassandra table and a single Pulsar topic.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_are_the_system_requirements_for_cassandra_source_connector"><a class="anchor" href="#_what_are_the_system_requirements_for_cassandra_source_connector"></a>What are the system requirements for Cassandra Source Connector?</h3>
+<h3 id="_what_are_the_system_requirements_for_csc_for_pulsar"><a class="anchor" href="#_what_are_the_system_requirements_for_csc_for_pulsar"></a>What are the system requirements for CSC for Pulsar?</h3>
 <div class="paragraph">
 <p>Minimum system requirement are:</p>
 </div>
@@ -146,37 +147,40 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_are_the_datastax_cdc_for_apache_cassandra_limitations"><a class="anchor" href="#_what_are_the_datastax_cdc_for_apache_cassandra_limitations"></a>What are the DataStax CDC for Apache Cassandra limitations?</h3>
+<h3 id="_what_are_the_cdc_for_cassandra_limitations"><a class="anchor" href="#_what_are_the_cdc_for_cassandra_limitations"></a>What are the CDC for Cassandra limitations?</h3>
 <div class="paragraph">
-<p>The DataStax CDC for Apache Cassandra:</p>
+<p>CDC for Cassandra has the following limitations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Does not manage table truncates</p>
+<p>Does not manage table truncates.</p>
 </li>
 <li>
 <p>Does not sync data available before starting the CDC agent.</p>
 </li>
 <li>
-<p>Does not replay logged batches</p>
+<p>Does not replay logged batches.</p>
 </li>
 <li>
-<p>Does not manage time-to-live</p>
+<p>Does not manage time-to-live.</p>
 </li>
 <li>
-<p>Does not support range deletes</p>
+<p>Does not support range deletes.</p>
 </li>
 <li>
-<p>CQL column names must not match a Pulsar primitive type name (ex: INT32)</p>
+<p>CQL column names must not match a Pulsar primitive type name (ex: INT32).</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_whats_happen_if_luna_streamingapache_pulsar_is_unavailable"><a class="anchor" href="#_whats_happen_if_luna_streamingapache_pulsar_is_unavailable"></a>What&#8217;s happen if Luna Streaming/Apache Pulsar is unavailable?</h3>
+<h3 id="_what_happens_if_luna_streaming_or_apache_pulsar_is_unavailable"><a class="anchor" href="#_what_happens_if_luna_streaming_or_apache_pulsar_is_unavailable"></a>What happens if Luna Streaming or Apache Pulsar is unavailable?</h3>
 <div class="paragraph">
-<p>If Luna Streaming/Apache Pulsar is not available or unreachable, the change agent will keep trying to send messages, and commitlog files accumulate in the cdc_raw directory. When the disk space of the cdc_raw directory reach your <strong>cdc_total_space_in_mb</strong> cassandra settings (less than 4Gb by default), writes to CDC-enabled tables fails with a <strong>CDCWriteException</strong>, and you get the following warning message in Cassandra logs:</p>
+<p>If Luna Streaming or Apache Pulsar is not available or unreachable, the change agent will keep trying to send messages.
+<code>commitlog</code> files accumulate in the <code>cdc_raw</code> directory.
+When the disk space of the <code>cdc_raw</code> directory reach your <code>cdc_total_space_in_mb</code> cassandra settings (less than 4Gb by default), writes to CDC-enabled tables fails with a <code>CDCWriteException</code>.
+The following warning message is included in Cassandra logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -184,56 +188,62 @@
 </div>
 </div>
 <div class="paragraph">
-<p>In order to avoid or recover from this situation, you should increase the <strong>cdc_total_space_in_mb</strong> and restart the node. To prevent hitting this new limit, you need to increase the write throughput to Luna Streaming/Apache Pulsar or decrease the write throughput to your node.</p>
+<p>To avoid or recover from this situation, increase the <code>cdc_total_space_in_mb</code> and restart the node.
+To prevent hitting this new limit, increase the write throughput to Luna Streaming or Apache Pulsar or decrease the write throughput to your node.</p>
 </div>
 <div class="paragraph">
-<p>Increasing the Luna Streaming/Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming/Apache Pulsar configuration (the number of partition of your topics), or the source connector configuration (query executors, batching and cache settings, connector parallelism).</p>
+<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partition of your topics), or the CSC for Pulsar configuration (query executors, batching and cache settings, connector parallelism).</p>
 </div>
 <div class="paragraph">
-<p>As a last resort, if losing data is acceptable in your CDC pipeline, remove commitlog files from the cdc_raw directory. Restarting the node is not needed in this case.</p>
+<p>As a last resort, if losing data is acceptable in your CDC pipeline, remove <code>commitlog</code> files from the <code>cdc_raw</code> directory.
+Restarting the node is not needed in this case.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i_have_multiple_cassandra_data_centers_how_do_i_configure_datastax_cdc_for_apache_cassandra"><a class="anchor" href="#_i_have_multiple_cassandra_data_centers_how_do_i_configure_datastax_cdc_for_apache_cassandra"></a>I have multiple Cassandra data centers. How do I configure DataStax CDC for Apache Cassandra?</h3>
+<h3 id="_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"><a class="anchor" href="#_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"></a>I have multiple Cassandra datacenters. How do I configure CDC for Cassandra?</h3>
 <div class="paragraph">
-<p>In a multi-datacenter Cassandra configuration, only enable CDC and install the change agent in a single datacenter. To ensure the data sent to all datacenters are delivered to the data topic, makes sure that replication to the datacenter that has CDC enabled is configured on the table.</p>
+<p>In a multi-datacenter Cassandra configuration, enable CDC and install the change agent in only one datacenter.
+To ensure the data sent to all datacenters are delivered to the data topic, make sure that replication to the datacenter that has CDC enabled on the table.</p>
 </div>
 <div class="paragraph">
-<p>For example, given a Cassandra cluster with 3 datacenters, DC1, DC2, and DC3, you would only enable CDC and install the change agent in DC1. To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1 (ex replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'}). The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
+<p>For example, given a Cassandra cluster with three datacenters (DC1, DC2, and DC3), you would enable CDC and install the change agent in only DC1.
+To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1.
+For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'})</code>.
+The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_is_datastax_cdc_for_apache_cassandra_an_open_source_project"><a class="anchor" href="#_is_datastax_cdc_for_apache_cassandra_an_open_source_project"></a>Is DataStax CDC for Apache Cassandra an open-source project?</h3>
+<h3 id="_is_cdc_for_cassandra_an_open_source_project"><a class="anchor" href="#_is_cdc_for_cassandra_an_open_source_project"></a>Is CDC for Cassandra an open-source project?</h3>
 <div class="paragraph">
-<p>Yes, DataStax CDC for Apache Cassandra is open source using the Apache 2.0 license.</p>
+<p>Yes, CDC for Cassandra is open source using the Apache 2.0 license.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_does_datastax_cdc_for_apache_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"><a class="anchor" href="#_what_does_datastax_cdc_for_apache_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"></a>What does DataStax CDC for Apache Cassandra provide that I cannot get with open-source Apache Pulsar?</h3>
+<h3 id="_what_does_cdc_for_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"><a class="anchor" href="#_what_does_cdc_for_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"></a>What does CDC for Cassandra provide that I cannot get with open-source Apache Pulsar?</h3>
 <div class="paragraph">
-<p>The DataStax CDC for Apache Cassandra implements, in effect, the reverse of Apache Pulsar or DataStax Cassandra Sink Connector. With those sink connectors, data is taken from a Pulsar topic and put into Cassandra. With CDC for Apache Cassandra, updates to a Cassandra table are converted into events and put into a data topic. From there, the data can be published to external platforms like Elasticsearch, Snowflake, and so on.</p>
+<p>In effect, the CDC for Cassandra implements the reverse of Apache Pulsar or DataStax Cassandra Sink Connector.
+With those sink connectors, data is taken from a Pulsar topic and put into Cassandra.
+With CDC for Cassandra, updates to a Cassandra table are converted into events and put into a data topic.
+From there, the data can be published to external platforms like Elastic, Snowflake, and other platforms.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_does_datastax_cdc_for_apache_cassandra_support_kubernetes"><a class="anchor" href="#_does_datastax_cdc_for_apache_cassandra_support_kubernetes"></a>Does DataStax CDC for Apache Cassandra support Kubernetes?</h3>
+<h3 id="_does_cdc_for_cassandra_support_kubernetes"><a class="anchor" href="#_does_cdc_for_cassandra_support_kubernetes"></a>Does CDC for Cassandra support Kubernetes?</h3>
 <div class="paragraph">
-<p>Yes.</p>
-</div>
-<div class="paragraph">
-<p>You can run the Source Connector for Apache Pulsar on Luna Streaming or Apache Pulsar running on any Kubernetes platform, including Minikube, K8d, Kind, Google Kubernetes Engine (GKE), Microsoft Azure Kubernetes Service, Amazon Kubernetes Service (AKS), and other commonly used platforms.</p>
-</div>
-<div class="paragraph">
-<p>You can deploy the change agent with Cassandra on Kubernetes with the <a href="https://github.com/datastax/cass-operator">cass-operator</a>.</p>
+<p>Yes.
+You can run the CSC for Pulsar on Luna Streaming or Apache Pulsar running on any Kubernetes platform, including Minikube, K8d, Kind, Google Kubernetes Engine (GKE), Microsoft Azure Kubernetes Service, Amazon Kubernetes Service (AKS), and other commonly used platforms.
+You can deploy the change agent with Cassandra on Kubernetes with the <a href="https://github.com/datastax/cass-operator">cass-operator</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_where_is_the_datastax_cdc_for_apache_cassandra_public_github_repository"><a class="anchor" href="#_where_is_the_datastax_cdc_for_apache_cassandra_public_github_repository"></a>Where is the DataStax CDC for Apache Cassandra public GitHub repository?</h3>
+<h3 id="_where_is_the_cdc_for_cassandra_public_github_repository"><a class="anchor" href="#_where_is_the_cdc_for_cassandra_public_github_repository"></a>Where is the CDC for Cassandra public GitHub repository?</h3>
 <div class="paragraph">
-<p>The source for this FAQs document is co-located with the DataStax CDC for Apache Cassandra repository code. For examples and additional documentation, access the repository <a href="https://github.com/datastax/cdc-apache-cassandra">here</a>.</p>
+<p>The source for this FAQs document is co-located with the CDC for Cassandra repository code.
+You can access the repository <a href="https://github.com/datastax/cdc-apache-cassandra">here</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_do_i_install_datastax_cdc_for_apache_cassandra"><a class="anchor" href="#_how_do_i_install_datastax_cdc_for_apache_cassandra"></a>How do I install DataStax CDC for Apache Cassandra?</h3>
+<h3 id="_how_do_i_install_cdc_for_cassandra"><a class="anchor" href="#_how_do_i_install_cdc_for_cassandra"></a>How do I install CDC for Cassandra?</h3>
 <div class="paragraph">
 <p>Follow the <a href="install.html" class="page">install</a> instructions.</p>
 </div>
@@ -247,7 +257,7 @@
 <div class="sect2">
 <h3 id="_what_is_grafana"><a class="anchor" href="#_what_is_grafana"></a>What is Grafana?</h3>
 <div class="paragraph">
-<p><a href="https://grafana.com/">Grafana</a> is a visualization tool that helps you make sense of metrics and related data coming from your apps via Prometheus, for example.</p>
+<p><a href="https://grafana.com/">Grafana</a> is a visualization tool that helps you make sense of metrics and related data coming from your apps via Prometheus.</p>
 </div>
 </div>
 </div>

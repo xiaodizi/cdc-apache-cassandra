@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>About DataStax CDC for Apache Cassandra :: DataStax Cassandra Source Connector documentation</title>
+    <title>About CDC for Cassandra :: DataStax Cassandra Source Connector documentation</title>
     <link rel="canonical" href="http://docs.datastax.com/en/cassandra-source-connector/cdc-apache-cassandra/1.0/index.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
@@ -53,21 +53,21 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></h3>
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item toggler" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="index.html">About DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="index.html">About CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="install.html">Installing the DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="install.html">Installing DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitor DataStax CDC for Apache Cassandra(R)</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="faqs.html">DataStax CDC for Apache Cassandra FAQs</a>
+    <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
   </li>
 </ul>
   </li>
@@ -76,12 +76,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+    <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
     <span class="version">1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">DataStax CDC for Apache Cassandra Documentation</span>
+      <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">1.0</a>
@@ -98,20 +98,20 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">DataStax CDC for Apache Cassandra Documentation</a></li>
-    <li><a href="index.html">About DataStax CDC for Apache Cassandra</a></li>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="index.html">About CDC for Cassandra</a></li>
   </ul>
 </nav>
   <!--<div class="edit-this-page"><a href="https://github.com/datastax/cassandra-source-connector/blob/master/docs/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">About DataStax CDC for Apache Cassandra</h1>
+<h1 class="page">About CDC for Cassandra</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>DataStax CDC for Apache Cassandra® is open-source software (OSS) that sends Cassandra mutations
-for tables having Change Data Capture (CDC) enabled to <a href="https://www.datastax.com/products/luna-streaming">Luna Streaming</a> or <a href="https://pulsar.apache.org/">Apache Pulsar</a>®, which in turn can write the data to platforms such as Elasticsearch&reg; or Snowflake&reg;.</p>
+<p>DataStax CDC for Apache Cassandra&#174; is open-source software (OSS) that sends Cassandra mutations
+for tables having Change Data Capture (CDC) enabled to <a href="https://www.datastax.com/products/luna-streaming">Luna Streaming</a> or <a href="https://pulsar.apache.org/">Apache Pulsar</a>®, which in turn can write the data to platforms such as Elasticsearch&#174; or Snowflake&#174;.</p>
 </div>
 </div>
 </div>
@@ -143,15 +143,15 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://www.data
 <h2 id="_architecture"><a class="anchor" href="#_architecture"></a>Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DataStax CDC for Apache Cassandra® has two components:</p>
+<p>CDC for Cassandra has two components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>DataStax Change Agent for Apache Cassandra, which is an event producer deployed as a JVM agent on each Cassandra data node.</p>
+<p>DataStax Change Agent for Apache Cassandra, which is an event producer deployed as a JVM agent on each Cassandra data node</p>
 </li>
 <li>
-<p>Datastax Source Connector for Apache Pulsar, which is source connector deployed in your streaming platform.</p>
+<p>DataStax Cassandra Source Connector for Apache Pulsar&#174;, which is a source connector deployed in your streaming platform</p>
 </li>
 </ul>
 </div>
@@ -164,7 +164,9 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://www.data
 </div>
 </div>
 <div class="paragraph">
-<p>Since version 3.0, Cassandra has included a change data capture (CDC) feature. The CDC feature can be enabled on the table level by setting the table property cdc=true, after which any commit log containing data for a CDC-enabled table will be moved to the CDC directory specified in cassandra.yaml on discard/flush (default: cdc_raw). Since Cassandra 4.0, commit logs can be synced to the <strong>cdc_raw</strong> directory periodically (by default, 10 seconds).</p>
+<p>Since version 3.0, Cassandra has included a change data capture (CDC) feature.
+The CDC feature can be enabled on the table level by setting the table property cdc=true, after which any commit log containing data for a CDC-enabled table will be moved to the CDC directory specified in <code>cassandra.yaml</code> on discard/flush (default: <code>cdc_raw</code>).
+Since Cassandra 4.0, commit logs can be synced to the <code>cdc_raw</code> directory periodically (by default, 10 seconds).</p>
 </div>
 <div class="paragraph">
 <p>When CDC is enabled:</p>
@@ -172,22 +174,23 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://www.data
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The change agent running on each node reads the Cassandra commitlog files in the cdc_raw directory and emits a message for each Cassandra mutation on a CDC-enabled table to a per-table events topic.</p>
+<p>The change agent running on each node reads the Cassandra <code>commitlog</code> files in the <code>cdc_raw</code> directory and emits a message for each Cassandra mutation on a CDC-enabled table to a per-table events topic.</p>
 </li>
 <li>
-<p>The source connector processes these events and fetches the mutated Cassandra row.</p>
+<p>The CSC for Pulsar processes these events and fetches the mutated Cassandra row.</p>
 </li>
 <li>
-<p>The source connector writes the row into the data topic. This ensures the most recent state of the Cassandra table is replicated into
-the data topic without the need to time re-order Cassandra mutations.</p>
+<p>The CSC for Pulsar writes the row into the data topic. This ensures the most recent state of the Cassandra table is replicated into the data topic without the need to time re-order Cassandra mutations.</p>
 </li>
 <li>
-<p>Once the change agent processes all mutations in the commit log, it deletes the file from the <strong>cdc_raw</strong> directory.</p>
+<p>Once the change agent processes all mutations in the commit log, it deletes the file from the <code>cdc_raw</code> directory.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>CDC for Apache Cassandra is tolerant of failures when processing the commit logs in the <strong>cdc_raw</strong> directory. It maintains a processing offset for each commit log. If the change agent restarts, it will picks up where it left off using the recorded offset value.</p>
+<p>CDC for Cassandra is tolerant of failures when processing the commit logs in the <code>cdc_raw</code> directory.
+It maintains a processing offset for each commit log.
+If the change agent restarts, CDC for Cassandra picks up where it left off using the recorded offset value.</p>
 </div>
 <div class="paragraph">
 <p>The following table describes what is published to the data topic for each update to a CDC-enabled Cassandra table.</p>
@@ -217,13 +220,19 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The Datastax Source Connector for Apache Pulsar updates the schema registry to dynamically reflect the Cassandra table schema. You can then deploy various sink connectors (see <a href="https://pulsar.apache.org/docs/en/io-connectors/#sink-connector">Pulsar built-in sink connectors</a>) to replicate data into the backends of your choice.</p>
+<p>The CSC for Pulsar updates the schema registry to dynamically reflect the Cassandra table schema.
+You can then deploy various sink connectors to replicate data into the backends of your choice.
+For more, see <a href="https://pulsar.apache.org/docs/en/io-connectors/#sink-connector">Pulsar built-in sink connectors</a>.</p>
 </div>
 <div class="paragraph">
-<p>Sink connectors processing messages from the data topic should interpret a event with a null value as a delete. With the Pulsar Elasticsearch connector, for example, you need to set <strong>nullValueAction</strong> to "DELETE".</p>
+<p>Sink connectors processing messages from the data topic should interpret a event with a null value as a delete.
+For example, with the Pulsar Elasticsearch connector, you need to set <code>nullValueAction</code> to <code>DELETE</code>.</p>
 </div>
 <div class="paragraph">
-<p>The change agent runs on all Cassandra data nodes. This means that it processes the original write plus its replicas. To minimize the number of duplicate events that end up in the data topic, the source connector maintain an in-memory deduplication cache. For each update to the table an MD5 digest is calculated which is used to deduplicate the updates from the replicas.</p>
+<p>The change agent runs on all Cassandra data nodes.
+This means that the agent processes the original write plus its replicas.
+To minimize the number of duplicate events that end up in the data topic, the CSC for Pulsar maintain an in-memory de-duplication cache.
+For each update to the table, an MD5 digest is calculated to de-duplicate the updates from the replicas.</p>
 </div>
 <div class="sect2">
 <h3 id="_change_agent_deployment_matrix"><a class="anchor" href="#_change_agent_deployment_matrix"></a>Change Agent deployment matrix</h3>
@@ -283,7 +292,7 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Open source Apache® Cassandra® 3.11.x and 4.x databases</p>
+<p>Apache Cassandra&#174; 3.11.x and 4.x databases</p>
 </li>
 <li>
 <p>Datastax Server Enterprise 6.8.16+</p>
@@ -301,16 +310,40 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>text (string), ascii (string)</p>
+<p>text (string)</p>
 </li>
 <li>
-<p>tinyint (int), smallint (int), int (int), bigint (long), double (double), float (float),</p>
+<p>ascii (string)</p>
+</li>
+<li>
+<p>tinyint (int)</p>
+</li>
+<li>
+<p>smallint (int)</p>
+</li>
+<li>
+<p>int (int)</p>
+</li>
+<li>
+<p>bigint (long)</p>
+</li>
+<li>
+<p>double (double)</p>
+</li>
+<li>
+<p>float (float)</p>
 </li>
 <li>
 <p>inet (string)</p>
 </li>
 <li>
-<p>decimal (cql_decimal), varint (cql_varint), duration (cql_duration)</p>
+<p>decimal (cql_decimal)</p>
+</li>
+<li>
+<p>varint (cql_varint)</p>
+</li>
+<li>
+<p>duration (cql_duration)</p>
 </li>
 <li>
 <p>blob(bytes)</p>
@@ -319,10 +352,19 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <p>boolean (boolean)</p>
 </li>
 <li>
-<p>timestamp (timestamp-millis), time (time-micros), date (date)</p>
+<p>timestamp (timestamp-millis)</p>
 </li>
 <li>
-<p>uuid, timeuuid (uuid)</p>
+<p>time (time-micros)</p>
+</li>
+<li>
+<p>date (date)</p>
+</li>
+<li>
+<p>uuid (uuid)</p>
+</li>
+<li>
+<p>timeuuid (uuid)</p>
 </li>
 <li>
 <p>User Defined Types (record)</p>
@@ -335,74 +377,82 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>On row level updates, static columns are included in the message value.</p>
+<p>On row-level updates, static columns are included in the message value.</p>
 </li>
 <li>
-<p>On partition level updates, the clustering keys are null in the message key, and the message value only has static columns on insert/update operations.</p>
+<p>On partition-level updates, the clustering keys are null in the message key, and the message value only has static columns on <code>insert</code>/<code>update</code> operations.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For data types that are not supported, columns using those data types are omitted from the events sent to the data topic. If a row update contains both support and unsupported data types, the event will include only columns with supported data types.</p>
+<p>For data types that are not supported, columns using those data types are omitted from the events sent to the data topic.
+If a row update contains both supported and unsupported data types, the event will include only columns with supported data types.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>CDC for Cassandra has the following limitations:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Does not manage table truncates</p>
+<p>Does not manage table truncates.</p>
 </li>
 <li>
-<p>Does not replay logged batches</p>
+<p>Does not sync data available before starting the CDC agent.</p>
 </li>
 <li>
-<p>Does not sync data available before starting the CDC producer.</p>
+<p>Does not replay logged batches.</p>
 </li>
 <li>
-<p>Does not manage time-to-live</p>
+<p>Does not manage time-to-live.</p>
 </li>
 <li>
-<p>Does not support range deletes</p>
+<p>Does not support range deletes.</p>
 </li>
 <li>
-<p>CQL column names must not match a Pulsar primitive type name (ex: INT32)</p>
+<p>CQL column names must not match a Pulsar primitive type name (ex: INT32).</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deployment_notes"><a class="anchor" href="#_deployment_notes"></a>Deployment Notes</h2>
+<h2 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_schema_updates_on_topics"><a class="anchor" href="#_schema_updates_on_topics"></a>Schema updates on topics</h3>
 <div class="paragraph">
-<p>Schema registry updates on a Pulsar topic are controlled by the "is-allow-auto-update-schema" option.</p>
+<p>Schema registry updates on a Pulsar topic are controlled by the <code>is-allow-auto-update-schema</code> option.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>"True" allows the broker to register a new schema for a topic and connect the producer if the schema is not registered.</p>
+<p><code>True</code> allows the broker to register a new schema for a topic and connect the producer if the schema is not registered.</p>
 </li>
 <li>
-<p>"False" rejects the producer&#8217;s connection to the broker if the schema is not registered.</p>
+<p><code>False</code> rejects the producer&#8217;s connection to the broker if the schema is not registered.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To ensure the source connector can automatically update the schema on the Pulsar topic, set the option to "True". Learn more at <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
+<p>To ensure the CSC for Pulsar can automatically update the schema on the Pulsar topic, set the option to <code>True</code>. For more, see <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_multiple_cassandra_datacenters"><a class="anchor" href="#_multiple_cassandra_datacenters"></a>Multiple Cassandra datacenters</h3>
 <div class="paragraph">
-<p>In a multi-datacenter Cassandra configuration, only enable CDC and install the change agent in a single datacenter. To ensure the data sent to all datacenters are delivered to the data topic, makes sure that replication to the datacenter that has CDC enabled is configured on the table.</p>
+<p>In a multi-datacenter Cassandra configuration, enable CDC and install the change agent in only one datacenter.
+To ensure the data sent to all datacenters are delivered to the data topic, make sure that replication to the datacenter that has CDC enabled on the table.</p>
 </div>
 <div class="paragraph">
-<p>For example, given a Cassandra cluster with 3 datacenters, DC1, DC2, and DC3, you would only enable CDC and install the change agent in DC1. To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1 (ex replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'}). The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
+<p>For example, given a Cassandra cluster with three datacenters (DC1, DC2, and DC3), you would enable CDC and install the change agent in only DC1.
+To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1.
+For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'})</code>.
+The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
 </div>
 </div>
 </div>
@@ -410,13 +460,8 @@ the data topic without the need to time re-order Cassandra mutations.</p>
 <div class="sect1">
 <h2 id="_where_to_go_next"><a class="anchor" href="#_where_to_go_next"></a>Where to go next</h2>
 <div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">If you&#8217;ve got more questions&#8230;&#8203;</dt>
-<dd>
-<p>For additional information about DataStax CDC for Apache Cassandra, see <a href="faqs.html" class="page">DataStax CDC for Apache Cassandra FAQs</a>.</p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>If you&#8217;ve got more questions about DataStax CDC for Apache Cassandra&#174;, see <a href="faqs.html" class="page">CDC for Cassandra FAQs</a>.</p>
 </div>
 </div>
 </div>
