@@ -123,7 +123,7 @@
 <p>The CDC for Cassandra is a an open-source product from DataStax.</p>
 </div>
 <div class="paragraph">
-<p>With CDC for Cassandra, updates to data in Apache Cassandra are put into a Pulsar topic, which in turn can write the data to external targets such as Elastic, Snowflake, and other platforms.
+<p>With CDC for Cassandra, updates to data in Apache Cassandra are put into a Pulsar topic, which in turn can write the data to external targets such as Elasticsearch, Snowflake, and other platforms.
 The DataStax Cassandra Source Connector for Apache Pulsar™ component is simple, with a 1:1 correspondence between the Cassandra table and a single Pulsar topic.</p>
 </div>
 </div>
@@ -179,7 +179,7 @@ The DataStax Cassandra Source Connector for Apache Pulsar™ component is simple
 <div class="paragraph">
 <p>If Luna Streaming or Apache Pulsar is not available or unreachable, the change agent will keep trying to send messages.
 <code>commitlog</code> files accumulate in the <code>cdc_raw</code> directory.
-When the disk space of the <code>cdc_raw</code> directory reach your <code>cdc_total_space_in_mb</code> cassandra settings (less than 4Gb by default), writes to CDC-enabled tables fails with a <code>CDCWriteException</code>.
+When the disk space of the <code>cdc_raw</code> directory reaches your <code>cdc_total_space_in_mb</code> cassandra setting (less than 4Gb by default), writes to CDC-enabled tables fail with a <code>CDCWriteException</code>.
 The following warning message is included in Cassandra logs:</p>
 </div>
 <div class="listingblock">
@@ -192,7 +192,7 @@ The following warning message is included in Cassandra logs:</p>
 To prevent hitting this new limit, increase the write throughput to Luna Streaming or Apache Pulsar or decrease the write throughput to your node.</p>
 </div>
 <div class="paragraph">
-<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partition of your topics), or the CSC for Pulsar configuration (query executors, batching and cache settings, connector parallelism).</p>
+<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partitions of your topics), or the CSC for Pulsar configuration (query executors, batching and cache settings, connector parallelism).</p>
 </div>
 <div class="paragraph">
 <p>As a last resort, if losing data is acceptable in your CDC pipeline, remove <code>commitlog</code> files from the <code>cdc_raw</code> directory.
@@ -203,12 +203,12 @@ Restarting the node is not needed in this case.</p>
 <h3 id="_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"><a class="anchor" href="#_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"></a>I have multiple Cassandra datacenters. How do I configure CDC for Cassandra?</h3>
 <div class="paragraph">
 <p>In a multi-datacenter Cassandra configuration, enable CDC and install the change agent in only one datacenter.
-To ensure the data sent to all datacenters are delivered to the data topic, make sure that replication to the datacenter that has CDC enabled on the table.</p>
+To ensure the data sent to all datacenters are delivered to the data topic, make sure to configure replication to the datacenter that has CDC enabled on the table.</p>
 </div>
 <div class="paragraph">
 <p>For example, given a Cassandra cluster with three datacenters (DC1, DC2, and DC3), you would enable CDC and install the change agent in only DC1.
-To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1.
-For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'})</code>.
+To ensure all updates in DC2 and DC3 are propagated to the data topic, configure the table&#8217;s keyspace to replicate data from DC2 and DC3 to DC1.
+For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': 3, 'dc2': 3, 'dc3': 3})</code>.
 The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
 </div>
 </div>
@@ -224,7 +224,7 @@ The data replicated to DC1 will be processed by the change agent and eventually 
 <p>In effect, the CDC for Cassandra implements the reverse of Apache Pulsar or DataStax Cassandra Sink Connector.
 With those sink connectors, data is taken from a Pulsar topic and put into Cassandra.
 With CDC for Cassandra, updates to a Cassandra table are converted into events and put into a data topic.
-From there, the data can be published to external platforms like Elastic, Snowflake, and other platforms.</p>
+From there, the data can be published to external platforms like Elasticsearch, Snowflake, and other platforms.</p>
 </div>
 </div>
 <div class="sect2">

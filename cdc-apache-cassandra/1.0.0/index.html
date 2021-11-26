@@ -225,13 +225,13 @@ You can then deploy various sink connectors to replicate data into the backends 
 For more, see <a href="https://pulsar.apache.org/docs/en/io-connectors/#sink-connector">Pulsar built-in sink connectors</a>.</p>
 </div>
 <div class="paragraph">
-<p>Sink connectors processing messages from the data topic should interpret a event with a null value as a delete.
+<p>Sink connectors processing messages from the data topic should interpret an event with a null value as a delete.
 For example, with the Pulsar Elasticsearch connector, you need to set <code>nullValueAction</code> to <code>DELETE</code>.</p>
 </div>
 <div class="paragraph">
 <p>The change agent runs on all Cassandra data nodes.
 This means that the agent processes the original write plus its replicas.
-To minimize the number of duplicate events that end up in the data topic, the CSC for Pulsar maintain an in-memory de-duplication cache.
+To minimize the number of duplicate events that end up in the data topic, the CSC for Pulsar maintains an in-memory de-duplication cache.
 For each update to the table, an MD5 digest is calculated to de-duplicate the updates from the replicas.</p>
 </div>
 <div class="sect2">
@@ -447,27 +447,27 @@ If a row update contains both supported and unsupported data types, the event wi
 <div class="ulist">
 <ul>
 <li>
-<p><code>True</code> allows the broker to register a new schema for a topic and connect the producer if the schema is not registered.</p>
+<p><code>true</code> allows the broker to register a new schema for a topic and connect the producer if the schema is not registered.</p>
 </li>
 <li>
-<p><code>False</code> rejects the producer&#8217;s connection to the broker if the schema is not registered.</p>
+<p><code>false</code> rejects the producer&#8217;s connection to the broker if the schema is not registered.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To ensure the CSC for Pulsar can automatically update the schema on the Pulsar topic, set the option to <code>True</code>. For more, see <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
+<p>To ensure the CSC for Pulsar can automatically update the schema on the Pulsar topic, set the option to <code>true</code>. For more, see <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_multiple_cassandra_datacenters"><a class="anchor" href="#_multiple_cassandra_datacenters"></a>Multiple Cassandra datacenters</h3>
 <div class="paragraph">
 <p>In a multi-datacenter Cassandra configuration, enable CDC and install the change agent in only one datacenter.
-To ensure the data sent to all datacenters are delivered to the data topic, make sure that replication to the datacenter that has CDC enabled on the table.</p>
+To ensure the data sent to all datacenters are delivered to the data topic, make sure to configure replication to the datacenter that has CDC enabled on the table.</p>
 </div>
 <div class="paragraph">
 <p>For example, given a Cassandra cluster with three datacenters (DC1, DC2, and DC3), you would enable CDC and install the change agent in only DC1.
-To ensure all updates in DC2 and DC2 are propagated to the data topic, configure the table to replicate data from DC2 and DC3 to DC1.
-For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': '3', 'dc2': '3', 'dc3': '3'})</code>.
+To ensure all updates in DC2 and DC3 are propagated to the data topic, configure the table&#8217;s keyspace to replicate data from DC2 and DC3 to DC1.
+For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': 3, 'dc2': 3, 'dc3': 3})</code>.
 The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
 </div>
 </div>
