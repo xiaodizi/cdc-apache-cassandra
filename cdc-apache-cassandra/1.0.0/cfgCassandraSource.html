@@ -103,10 +103,10 @@
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_datastax_cassandra_source_connector_for_apache_pulsar_settings"><a class="anchor" href="#_datastax_cassandra_source_connector_for_apache_pulsar_settings"></a>DataStax Cassandra Source Connector for Apache Pulsar settings</h2>
+<h2 id="_csc_for_pulsar_settings"><a class="anchor" href="#_csc_for_pulsar_settings"></a>CSC for Pulsar settings</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Table DataStax Cassandra Source Connector for Apache Pulsar settings</caption>
+<caption class="title">Table 1. Table CSC for Pulsar settings</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 37.5%;">
@@ -147,7 +147,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cloud.secureConnectBundle</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The location of the cloud secure bundle used to connect to Datastax Apache Cassandra as a service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The location of the cloud secure bundle used to connect to Datastax Astra DB.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
@@ -172,13 +172,6 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data.topic</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The topic name to publish cassandra data to</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">data-topic</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ignoreErrors</strong></p></td>
@@ -214,13 +207,6 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[1,&#8230;&#8203;]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>maxNumberOfRecordsInBatch</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of records that could be send in one batch request</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[1,&#8230;&#8203;]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>metricsHighestLatency</strong></p></td>
