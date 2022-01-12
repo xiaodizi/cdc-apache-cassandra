@@ -24,25 +24,16 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-end__group">
-          <a class="navbar-item" href="/en/landing_page/doc/landing_page/current.html">Docs</a>
-          <!--<a class="navbar-item" href="/community">Community</a>-->
-          <!--<a class="navbar-item" href="/blog">Blog</a>-->
-          <!-- <a class="navbar-item search" href="/results">
-            <img width="34px" height="34px" src="/en/cdc-for-cassandra/assets/img/search.svg"/>
-          </a>-->
-        </div>
-        <div class="navbar-end__group">
-          <!--<a class="navbar-item social-icon" href="https://twitter.com/stargateio" target="_blank" rel="noopener noreferrer">
-            <img width="34px" height="34px" src="/en/cdc-for-cassandra/assets/img/twitter.svg"/>
-          </a>-->
-          <!--<a class="navbar-item social-icon" href="https://groups.google.com/a/lists.stargate.io/g/stargate-users" target="_blank">
-            <img width="34px" height="34px" src="/en/cdc-for-cassandra/assets/img/groups.svg"/>
-          </a>-->
-          <!--<a class="navbar-item social-icon" href="https://github.com/riptano/pulsar-distro" target="_blank" rel="noopener noreferrer">
-            <img width="34px" height="34px" src="/en/cdc-for-cassandra/assets/img/github.svg"/>
-          </a>-->
-        </div>
+          <form id="alg-search-form" class="ds-search-form" action="https://www.datastax.com/search" target="_blank" method="GET">
+                <div>
+                    <input id="alg-search-input" class="ds-datastax-search-input" type="text" name="query" placeholder="Search docs"/>
+                    <button id="alg-search-button" class="ds-search-button" type="submit" style="display: none"></button>
+                    <input id="dataset" type="hidden" name="dataset" value="docs"/>
+                </div>
+          </form>
+          <div class="navbar-item">
+             <a class="navbar-item" href="/en/landing_page/doc/landing_page/current.html">Docs</a>
+          </div>
       </div>
     </div>
   </nav>
@@ -57,7 +48,7 @@
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.0/index.html">1.0.0</a>
+          <a href="/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.1/index.html">1.0.1</a>
         </li>
       </ul>
     </li>
