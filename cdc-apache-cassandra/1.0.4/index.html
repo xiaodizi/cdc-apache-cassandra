@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>About CDC for Cassandra :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.3/index.html">
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.4/index.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -42,7 +42,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.3">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -71,14 +71,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
-    <span class="version">1.0.3</span>
+    <span class="version">1.0.4</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">1.0.3</a>
+          <a href="index.html">1.0.4</a>
         </li>
       </ul>
     </li>
@@ -232,30 +232,25 @@ For each update to the table, an MD5 digest is calculated to de-duplicate the up
 <h3 id="_change_agent_deployment_matrix"><a class="anchor" href="#_change_agent_deployment_matrix"></a>Change Agent deployment matrix</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra v3.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c3-pulsar">agent-c3-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c3-luna">agent-c3-luna</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c3">agent-c3</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra v4.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c4-pulsar">agent-c4-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c4-luna">agent-c4-luna</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-c4">agent-c4</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-dse4-pulsar">agent-dse4-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-dse4-luna">agent-dse4-luna</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/agent-dse4">agent-dse4</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -279,17 +274,14 @@ For each update to the table, an MD5 digest is calculated to de-duplicate the up
 <h3 id="_connector_deployment_matrix"><a class="anchor" href="#_connector_deployment_matrix"></a>Connector deployment matrix</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar/Luna Streaming</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/connector-pulsar">connector-pulsar</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/connector-luna">connector-luna</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datastax/cdc-apache-cassandra/tree/master/connector">connector</a></p></td>
 </tr>
 </tbody>
 </table>

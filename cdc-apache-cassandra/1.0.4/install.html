@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Installing CDC for Cassandra :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.3/install.html">
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.4/install.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -42,7 +42,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.3">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.4">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -71,14 +71,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
-    <span class="version">1.0.3</span>
+    <span class="version">1.0.4</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">1.0.3</a>
+          <a href="index.html">1.0.4</a>
         </li>
       </ul>
     </li>
@@ -129,47 +129,27 @@
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Cassandra type</th>
-<th class="tableblock halign-left valign-top">Streaming platform</th>
 <th class="tableblock halign-left valign-top">JAR file</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 3.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-pulsar-&lt;version&gt;-all.jar</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 3.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-luna-&lt;version&gt;-all.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c3-&lt;version&gt;-all.jar</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 4.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-pulsar-&lt;version&gt;-all.jar</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Cassandra 4.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-luna-&lt;version&gt;-all.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-c4-&lt;version&gt;-all.jar</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-pulsar-&lt;version&gt;-all.jar</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DSE 6.8.16+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-luna-&lt;version&gt;-all.jar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">agent-dse4-&lt;version&gt;-all.jar</p></td>
 </tr>
 </tbody>
 </table>
@@ -199,7 +179,7 @@ Here is an example for Luna Streaming/Apache Pulsar on Cassandra version 4.0 nod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-luna-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -413,6 +393,20 @@ cdc_total_space_in_mb: 50000</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_HOSTNAME_VERIFICATION_ENABLE</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tlsTrustCertsFilePath</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the trusted TLS certificate file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_TLS_TRUST_CERTS_FILE_PATH</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>useKeyStoreTls</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path path to the trusted TLS certificate file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_USE_KEYSTORE_TLS</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -442,23 +436,22 @@ cdc_total_space_in_mb: 50000</code></pre>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 100%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Streaming platform</th>
-<th class="tableblock halign-left valign-top">NAR file</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar 2.8 and Luna Streaming 2.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar-cassandra-source-&lt;version&gt;.nar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NAR file</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Luna Streaming 2.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">luna-cassandra-source-&lt;version&gt;.nar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache Pulsar 2.8 and Luna Streaming 2.8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar-cassandra-source-&lt;version&gt;.nar</p></td>
 </tr>
 </tbody>
 </table>
