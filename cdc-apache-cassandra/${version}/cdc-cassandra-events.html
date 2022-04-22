@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.4/cfgCassandraJavaDriverSettings.html">
+    <title>CDC for Cassandra Events :: DataStax CDC for Apache Cassandra documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/${version}/cdc-cassandra-events.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -42,7 +42,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.4">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="${version}">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -71,14 +71,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
-    <span class="version">1.0.4</span>
+    <span class="version">${version}</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">1.0.4</a>
+          <a href="index.html">${version}</a>
         </li>
       </ul>
     </li>
@@ -91,142 +91,247 @@
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="cdc-cassandra-events.html">CDC for Cassandra Events</a></li>
+  </ul>
 </nav>
-  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cfgCassandraJavaDriverSettings.adoc">Edit this Page</a></div>-->
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cdc-cassandra-events.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="_pass_csc_for_pulsar_settings_directly_to_the_datastax_java_driver"><a class="anchor" href="#_pass_csc_for_pulsar_settings_directly_to_the_datastax_java_driver"></a>Pass CSC for Pulsar settings directly to the DataStax Java driver</h2>
+<h1 class="page">CDC for Cassandra Events</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In your DataStax Cassandra Source Connector for Apache Pulsar™ configuration file, you can directly pass settings to the DataStax Java driver by using the <code>datastax-java-driver</code> prefix.
-For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-no-highlight hljs" data-lang="no-highlight">datastax-java-driver.basic.request.consistency=ALL</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_mapping_csc_for_pulsar_settings_to_java_driver_properties"><a class="anchor" href="#_mapping_csc_for_pulsar_settings_to_java_driver_properties"></a>Mapping CSC for Pulsar settings to Java driver properties</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following table identifies functionally equivalent CSC for Pulsar and DataStax Java driver settings.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you define both in your configuration, the CSC for Pulsar setting take precedence over the <code>datastax-java-driver.property-name</code>.
-If you do not provide either in your configuration, CSC for Pulsar defaults are in effect.
-</td>
-</tr>
-</table>
+<p>The DataStax CDC for Cassandra agent pushes the mutation primary key for the CDC-enabled table into the Apache Pulsar events topic (also called the dirty topic). The messages in the data topic (or clean topic) are keyed messages where both the key and the payload are <a href="https://avro.apache.org/docs/current/spec.html#schema_record">AVRO records</a>:
+* The message key is an AVRO record including all the primary key columns of your Cassandra table.
+* The message payload is an AVRO record including regular columns from your Cassandra table.</p>
 </div>
 <div class="paragraph">
-<p>For information about the Java properties, refer to the <a href="https://docs.datastax.com/en/developer/java-driver-dse/2.3/manual/core/configuration/">DataStax Java driver documentation.</a></p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">DataStax Cassandra Source Connector for Apache Pulsar™</th>
-<th class="tableblock halign-left valign-top">Using datastax-java-driver prefix</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contactPoints</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.basic.contact-points</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>loadBalancing.localDc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.basic.load-balancing-policy.local-datacenter</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cloud.secureConnectBundle</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.basic.cloud.secure-connect-bundle</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>queryExecutionTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.basic.request.timeout</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectionPoolLocalSize</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.advanced.connection.pool.local.size</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>compression</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.advanced.protocol.compression</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metricsHighestLatency</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datastax-java-driver.advanced.metrics.session.cql-requests.highest-latency</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>There is a difference between the CSC for Pulsar&#8217;s <code>contactPoints</code> setting and the Java driver&#8217;s <code>datastax-java-driver.basic.contact-points</code>.
-For <code>contactPoints</code>, the value of the <code>port</code> is appended to every host provided by this setting.
-For <code>datastax-java-driver.basic.contact-points</code>, you must provide the fully qualified contact points (<code>host:port</code>).</p>
+<p>In order to support <a href="https://pulsar.apache.org/docs/en/concepts-topic-compaction/">Pulsar Topic Compaction</a>, the message key is encoded separately from the message payload, in the message metadata.</p>
 </div>
 <div class="paragraph">
-<p>By passing in the Java driver&#8217;s setting, this option gives you more configuration flexibility because you can specify a different port for each host.
-Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-no-highlight hljs" data-lang="no-highlight">datastax-java-driver.basic.contact-points = 127.0.0.1:9042, 127.0.0.2:90</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_conversion_of_java_driver_properties_of_type_list_to_typesafe_config"><a class="anchor" href="#_conversion_of_java_driver_properties_of_type_list_to_typesafe_config"></a>Conversion of Java driver properties of type List to TypeSafe Config</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following properties that are of type <code>List</code>, which you could pass into the driver from your Pulsar Connector configuration via the <code>datastax-java-driver</code> prefix, are converted by the DataStax Java driver to the <code>TypeSafe Config</code> format.</p>
+<p>Finally, the following CQL data types are encoded as AVRO logical types:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>datastax-java-driver.advanced.ssl-engine-factory.cipher-suites</code></p>
+<p><code>Date</code></p>
 </li>
 <li>
-<p><code>datastax-java-driver.advanced.metrics.node.enabled</code></p>
+<p><code>Decimal</code></p>
 </li>
 <li>
-<p><code>datastax-java-driver.advanced.metadata.schema.refreshed-keyspaces</code></p>
+<p><code>Duration</code></p>
 </li>
 <li>
-<p><code>datastax-java-driver.advanced.metrics.session.enabled</code></p>
+<p><code>Timestamp</code></p>
 </li>
 <li>
-<p><code>datastax-java-driver.basic.contact-points</code></p>
+<p><code>Varint</code></p>
+</li>
+<li>
+<p><code>Uuid</code>, <code>timeuuid</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The conversion by the Java driver will split the comma-separated values provided in those setting to create indexed properties.
-For example, if you passed in <code>datastax-java-driver.advanced.metrics.session.enabled=a,b</code>, the entry is converted to:</p>
+<p>See <a href="https://avro.apache.org/docs/current/spec.html#Logical+Types">AVRO Logical Types</a> for more info on AVRO.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_change_events_key"><a class="anchor" href="#_change_events_key"></a>Change Event’s Key</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For a given table, the change event’s key is an AVRO record that contains a field for each column in the primary key of the table at the time the event was created. Both the events and the data topics (also called the dirty and the clean topics) have the same message key, an AVRO record including the primary key columns.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_insert_event"><a class="anchor" href="#_insert_event"></a><code>INSERT</code> Event</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create a Cassandra table to illustrate what happens:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-no-highlight hljs" data-lang="no-highlight">datastax-java-driver.advanced.metrics.session.enabled.0=a
-datastax-java-driver.advanced.metrics.session.enabled.1=b</code></pre>
+<pre>CREATE KEYSPACE ks1 WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
+
+CREATE TABLE ks1.tbl1 (
+    key text PRIMARY KEY,
+    c1 text
+) WITH additional_write_policy = '99PERCENTILE'
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99PERCENTILE';</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more information, refer to the <a href="https://docs.datastax.com/en/developer/java-driver/4.3/manual/core/configuration/reference/">Java driver reference configuration</a> topic.</p>
+<p>Then insert a row:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>INSERT INTO ks1.tbl1 (key, c1) VALUES (`3`, `bob3`)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When an <code>INSERT</code> statement is executed, the CDC agent catches the mutation from the commitlog files and sends a message into the dirty topic. The deployed source connector then reads the full row from the Cassandra datacenter, and publishes a message into the clean topic with all regular columns encoded as an AVRO record in the message payload.</p>
+</div>
+<div class="paragraph">
+<p>Here is a JSON representation of the AVRO Record for the message key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "key": "3"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And a JSON representation of the AVRO Record for the message payload:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "c1": "bob3"
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_delete_event"><a class="anchor" href="#_delete_event"></a><code>DELETE</code> Event</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When deleting a row, the Cassandra source connector will publish a tombstone message into the clean topic with a message key matching the C* primary key and a null payload. The null payload acts as a message tombstone, and the downstream Pulsar connectors like the Elasticsearch sink should delete the corresponding row (or document in the case of Elasticsearch).</p>
+</div>
+<div class="sect2">
+<h3 id="_check_source_connector_status"><a class="anchor" href="#_check_source_connector_status"></a>Check Source Connector status</h3>
+<div class="paragraph">
+<p>You can check the connector status with the following command. The connector must be running.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bin/pulsar-admin source status --name cassandra-source-ks1-table1
+{
+    "numInstances" : 1,
+    "numRunning" : 1,
+    "instances" : [ {
+        "instanceId" : 0,
+        "status" : {
+        "running" : true,
+        "error" : "",
+        "numRestarts" : 0,
+        "numReceivedFromSource" : 0,
+        "numSystemExceptions" : 0,
+        "latestSystemExceptions" : [ ],
+        "numSourceExceptions" : 0,
+        "latestSourceExceptions" : [ ],
+        "numWritten" : 0,
+        "lastReceivedTime" : 0,
+        "workerId" : "c-standalone-fw-localhost-8080"
+        }
+    } ]
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re having issues consuming CDC events, check the source connector logs on your Pulsar function workers and the data topic schema.</p>
+</div>
+<div class="sect2">
+<h3 id="_check_the_source_connector_logs"><a class="anchor" href="#_check_the_source_connector_logs"></a>Check the source connector logs</h3>
+<div class="paragraph">
+<p>Check the source connector logs on your Pulsar function workers. The name of the logs depends on the connectors' name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat logs/functions/public/default/cassandra-source-ks1-table1/cassandra-source-ks1-table1-0.log</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_the_data_topic_schema"><a class="anchor" href="#_check_the_data_topic_schema"></a>Check the data topic schema</h3>
+<div class="paragraph">
+<p>Check the <a href="https://pulsar.apache.org/docs/en/schema-manage/">Pulsar schema</a> to ensure the clean topic matches your CQL table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bin/pulsar-admin schemas get "persistent://public/default/data-ks1.table1"
+{
+  "version": 0,
+  "schemaInfo": {
+    "name": "data-ks1.table1",
+    "schema": {
+      "key": {
+        "name": "root",
+        "schema": {
+          "type": "record",
+          "name": "root",
+          "namespace": "ks1",
+          "doc": "",
+          "fields": [
+            {
+              "name": "key",
+              "type": "string"
+            }
+          ]
+        },
+        "type": "AVRO",
+        "properties": {}
+      },
+      "value": {
+        "name": "root",
+        "schema": {
+          "type": "record",
+          "name": "root",
+          "namespace": "ks1",
+          "doc": "",
+          "fields": [
+            {
+              "name": "c1",
+              "type": [
+                "null",
+                "string"
+              ]
+            }
+          ]
+        },
+        "type": "AVRO",
+        "properties": {}
+      }
+    },
+    "type": "KEY_VALUE",
+    "properties": {
+      "key.schema.name": "root",
+      "key.schema.properties": "{}",
+      "key.schema.type": "AVRO",
+      "kv.encoding.type": "SEPARATED",
+      "value.schema.name": "root",
+      "value.schema.properties": "{}",
+      "value.schema.type": "AVRO"
+    }
+  }
+}</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
