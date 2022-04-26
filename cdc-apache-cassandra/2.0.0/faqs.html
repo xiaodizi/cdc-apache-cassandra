@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CDC for Cassandra Events :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/1.0.3/cdc-cassandra-events.html">
+    <title>CDC for Cassandra FAQs :: DataStax CDC for Apache Cassandra documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.0.0/faqs.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -42,7 +42,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cdc-apache-cassandra" data-version="1.0.3">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="2.0.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -60,7 +60,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
   </li>
 </ul>
@@ -71,14 +71,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
-    <span class="version">1.0.3</span>
+    <span class="version">2.0.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">1.0.3</a>
+          <a href="index.html">2.0.0</a>
         </li>
       </ul>
     </li>
@@ -93,244 +93,165 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
-    <li><a href="cdc-cassandra-events.html">CDC for Cassandra Events</a></li>
+    <li><a href="faqs.html">CDC for Cassandra FAQs</a></li>
   </ul>
 </nav>
-  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cdc-cassandra-events.adoc">Edit this Page</a></div>-->
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/faqs.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">CDC for Cassandra Events</h1>
+<h1 class="page">CDC for Cassandra FAQs</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The DataStax CDC for Cassandra agent pushes the mutation primary key for the CDC-enabled table into the Apache Pulsar events topic (also called the dirty topic). The messages in the data topic (or clean topic) are keyed messages where both the key and the payload are <a href="https://avro.apache.org/docs/current/spec.html#schema_record">AVRO records</a>:
-* The message key is an AVRO record including all the primary key columns of your Cassandra table.
-* The message payload is an AVRO record including regular columns from your Cassandra table.</p>
+<p>If you are new to DataStax CDC for Apache Cassandra®, these frequently asked questions are for you.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_is_cdc_for_cassandra"><a class="anchor" href="#_what_is_cdc_for_cassandra"></a>What is CDC for Cassandra?</h3>
+<div class="paragraph">
+<p>The CDC for Cassandra is a an open-source product from DataStax.</p>
 </div>
 <div class="paragraph">
-<p>In order to support <a href="https://pulsar.apache.org/docs/en/concepts-topic-compaction/">Pulsar Topic Compaction</a>, the message key is encoded separately from the message payload, in the message metadata.</p>
+<p>With CDC for Cassandra, updates to data in Apache Cassandra are put into a Pulsar topic, which in turn can write the data to external targets such as Elasticsearch, Snowflake, and other platforms.
+The DataStax Cassandra Source Connector for Apache Pulsar™ component is simple, with a 1:1 correspondence between the Cassandra table and a single Pulsar topic.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_what_are_the_system_requirements_for_csc_for_pulsar"><a class="anchor" href="#_what_are_the_system_requirements_for_csc_for_pulsar"></a>What are the system requirements for CSC for Pulsar?</h3>
 <div class="paragraph">
-<p>Finally, the following CQL data types are encoded as AVRO logical types:</p>
+<p>Minimum system requirement are:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Date</code></p>
+<p>Cassandra 3.11 or 4.0+, DSE 6.8.16+</p>
 </li>
 <li>
-<p><code>Decimal</code></p>
+<p>Luna Streaming 2.8.0+ or Apache Pulsar 2.8.1+</p>
 </li>
 <li>
-<p><code>Duration</code></p>
-</li>
-<li>
-<p><code>Timestamp</code></p>
-</li>
-<li>
-<p><code>Varint</code></p>
-</li>
-<li>
-<p><code>Uuid</code>, <code>timeuuid</code></p>
+<p>Additional memory and CPU available on all Cassandra nodes</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See <a href="https://avro.apache.org/docs/current/spec.html#Logical+Types">AVRO Logical Types</a> for more info on AVRO.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_change_events_key"><a class="anchor" href="#_change_events_key"></a>Change Event’s Key</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>For a given table, the change event’s key is an AVRO record that contains a field for each column in the primary key of the table at the time the event was created. Both the events and the data topics (also called the dirty and the clean topics) have the same message key, an AVRO record including the primary key columns.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_insert_event"><a class="anchor" href="#_insert_event"></a><code>INSERT</code> Event</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s create a Cassandra table to illustrate what happens:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>CREATE KEYSPACE ks1 WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
-
-CREATE TABLE ks1.tbl1 (
-    key text PRIMARY KEY,
-    c1 text
-) WITH additional_write_policy = '99PERCENTILE'
-    AND bloom_filter_fp_chance = 0.01
-    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
-    AND comment = ''
-    AND compaction = {'class': 'org.apache.cassandra.db.compaction.UnifiedCompactionStrategy'}
-    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
-    AND crc_check_chance = 1.0
-    AND default_time_to_live = 0
-    AND gc_grace_seconds = 864000
-    AND max_index_interval = 2048
-    AND memtable_flush_period_in_ms = 0
-    AND min_index_interval = 128
-    AND read_repair = 'BLOCKING'
-    AND speculative_retry = '99PERCENTILE';</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then insert a row:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>INSERT INTO ks1.tbl1 (key, c1) VALUES (`3`, `bob3`)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When an <code>INSERT</code> statement is executed, the CDC agent catches the mutation from the commitlog files and sends a message into the dirty topic. The deployed source connector then reads the full row from the Cassandra datacenter, and publishes a message into the clean topic with all regular columns encoded as an AVRO record in the message payload.</p>
-</div>
-<div class="paragraph">
-<p>Here is a JSON representation of the AVRO Record for the message key:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>{
-  "key": "3"
-}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And a JSON representation of the AVRO Record for the message payload:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>{
-  "c1": "bob3"
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_delete_event"><a class="anchor" href="#_delete_event"></a><code>DELETE</code> Event</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When deleting a row, the Cassandra source connector will publish a tombstone message into the clean topic with a message key matching the C* primary key and a null payload. The null payload acts as a message tombstone, and the downstream Pulsar connectors like the Elasticsearch sink should delete the corresponding row (or document in the case of Elasticsearch).</p>
 </div>
 <div class="sect2">
-<h3 id="_check_source_connector_status"><a class="anchor" href="#_check_source_connector_status"></a>Check Source Connector status</h3>
+<h3 id="_what_are_the_cdc_for_cassandra_limitations"><a class="anchor" href="#_what_are_the_cdc_for_cassandra_limitations"></a>What are the CDC for Cassandra limitations?</h3>
 <div class="paragraph">
-<p>You can check the connector status with the following command. The connector must be running.</p>
+<p>CDC for Cassandra has the following limitations:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>bin/pulsar-admin source status --name cassandra-source-ks1-table1
-{
-    "numInstances" : 1,
-    "numRunning" : 1,
-    "instances" : [ {
-        "instanceId" : 0,
-        "status" : {
-        "running" : true,
-        "error" : "",
-        "numRestarts" : 0,
-        "numReceivedFromSource" : 0,
-        "numSystemExceptions" : 0,
-        "latestSystemExceptions" : [ ],
-        "numSourceExceptions" : 0,
-        "latestSourceExceptions" : [ ],
-        "numWritten" : 0,
-        "lastReceivedTime" : 0,
-        "workerId" : "c-standalone-fw-localhost-8080"
-        }
-    } ]
-}</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you&#8217;re having issues consuming CDC events, check the source connector logs on your Pulsar function workers and the data topic schema.</p>
-</div>
-<div class="sect2">
-<h3 id="_check_the_source_connector_logs"><a class="anchor" href="#_check_the_source_connector_logs"></a>Check the source connector logs</h3>
-<div class="paragraph">
-<p>Check the source connector logs on your Pulsar function workers. The name of the logs depends on the connectors' name.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>cat logs/functions/public/default/cassandra-source-ks1-table1/cassandra-source-ks1-table1-0.log</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Does not manage table truncates.</p>
+</li>
+<li>
+<p>Does not sync data available before starting the CDC agent.</p>
+</li>
+<li>
+<p>Does not replay logged batches.</p>
+</li>
+<li>
+<p>Does not manage time-to-live.</p>
+</li>
+<li>
+<p>Does not support range deletes.</p>
+</li>
+<li>
+<p>CQL column names must not match a Pulsar primitive type name (ex: INT32).</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_check_the_data_topic_schema"><a class="anchor" href="#_check_the_data_topic_schema"></a>Check the data topic schema</h3>
+<h3 id="_what_happens_if_luna_streaming_or_apache_pulsar_is_unavailable"><a class="anchor" href="#_what_happens_if_luna_streaming_or_apache_pulsar_is_unavailable"></a>What happens if Luna Streaming or Apache Pulsar is unavailable?</h3>
 <div class="paragraph">
-<p>Check the <a href="https://pulsar.apache.org/docs/en/schema-manage/">Pulsar schema</a> to ensure the clean topic matches your CQL table:</p>
+<p>If Luna Streaming or Apache Pulsar is not available or unreachable, the change agent will keep trying to send messages.
+<code>commitlog</code> files accumulate in the <code>cdc_raw</code> directory.
+When the disk space of the <code>cdc_raw</code> directory reaches your <code>cdc_total_space_in_mb</code> cassandra setting (less than 4Gb by default), writes to CDC-enabled tables fail with a <code>CDCWriteException</code>.
+The following warning message is included in Cassandra logs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/pulsar-admin schemas get "persistent://public/default/data-ks1.table1"
-{
-  "version": 0,
-  "schemaInfo": {
-    "name": "data-ks1.table1",
-    "schema": {
-      "key": {
-        "name": "root",
-        "schema": {
-          "type": "record",
-          "name": "root",
-          "namespace": "ks1",
-          "doc": "",
-          "fields": [
-            {
-              "name": "key",
-              "type": "string"
-            }
-          ]
-        },
-        "type": "AVRO",
-        "properties": {}
-      },
-      "value": {
-        "name": "root",
-        "schema": {
-          "type": "record",
-          "name": "root",
-          "namespace": "ks1",
-          "doc": "",
-          "fields": [
-            {
-              "name": "c1",
-              "type": [
-                "null",
-                "string"
-              ]
-            }
-          ]
-        },
-        "type": "AVRO",
-        "properties": {}
-      }
-    },
-    "type": "KEY_VALUE",
-    "properties": {
-      "key.schema.name": "root",
-      "key.schema.properties": "{}",
-      "key.schema.type": "AVRO",
-      "kv.encoding.type": "SEPARATED",
-      "value.schema.name": "root",
-      "value.schema.properties": "{}",
-      "value.schema.type": "AVRO"
-    }
-  }
-}</pre>
+<pre class="highlightjs highlight"><code class="language-language-bash hljs" data-lang="language-bash">WARN  [CoreThread-5] 2021-10-29 09:12:52,790  NoSpamLogger.java:98 - Rejecting Mutation containing CDC-enabled table. Free up space in /mnt/data/cdc_raw.</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>To avoid or recover from this situation, increase the <code>cdc_total_space_in_mb</code> and restart the node.
+To prevent hitting this new limit, increase the write throughput to Luna Streaming or Apache Pulsar or decrease the write throughput to your node.</p>
+</div>
+<div class="paragraph">
+<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partitions of your topics), or the CSC for Pulsar configuration (query executors, batching and cache settings, connector parallelism).</p>
+</div>
+<div class="paragraph">
+<p>As a last resort, if losing data is acceptable in your CDC pipeline, remove <code>commitlog</code> files from the <code>cdc_raw</code> directory.
+Restarting the node is not needed in this case.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"><a class="anchor" href="#_i_have_multiple_cassandra_datacenters_how_do_i_configure_cdc_for_cassandra"></a>I have multiple Cassandra datacenters. How do I configure CDC for Cassandra?</h3>
+<div class="paragraph">
+<p>In a multi-datacenter Cassandra configuration, enable CDC and install the change agent in only one datacenter.
+To ensure the data sent to all datacenters are delivered to the data topic, make sure to configure replication to the datacenter that has CDC enabled on the table.</p>
+</div>
+<div class="paragraph">
+<p>For example, given a Cassandra cluster with three datacenters (DC1, DC2, and DC3), you would enable CDC and install the change agent in only DC1.
+To ensure all updates in DC2 and DC3 are propagated to the data topic, configure the table&#8217;s keyspace to replicate data from DC2 and DC3 to DC1.
+For example, <code>replication = {'class': 'NetworkTopologyStrategy', 'dc1': 3, 'dc2': 3, 'dc3': 3})</code>.
+The data replicated to DC1 will be processed by the change agent and eventually end up in the data topic.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_is_cdc_for_cassandra_an_open_source_project"><a class="anchor" href="#_is_cdc_for_cassandra_an_open_source_project"></a>Is CDC for Cassandra an open-source project?</h3>
+<div class="paragraph">
+<p>Yes, CDC for Cassandra is open source using the Apache 2.0 license. You can find the source code on the GitHub repository <a href="https://github.com/datastax/cdc-apache-cassandra">datastax/cdc-apache-cassandra</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_does_cdc_for_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"><a class="anchor" href="#_what_does_cdc_for_cassandra_provide_that_i_cannot_get_with_open_source_apache_pulsar"></a>What does CDC for Cassandra provide that I cannot get with open-source Apache Pulsar?</h3>
+<div class="paragraph">
+<p>In effect, the CDC for Cassandra implements the reverse of Apache Pulsar or DataStax Cassandra Sink Connector.
+With those sink connectors, data is taken from a Pulsar topic and put into Cassandra.
+With CDC for Cassandra, updates to a Cassandra table are converted into events and put into a data topic.
+From there, the data can be published to external platforms like Elasticsearch, Snowflake, and other platforms.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_does_cdc_for_cassandra_support_kubernetes"><a class="anchor" href="#_does_cdc_for_cassandra_support_kubernetes"></a>Does CDC for Cassandra support Kubernetes?</h3>
+<div class="paragraph">
+<p>Yes.
+You can run the CSC for Pulsar on Luna Streaming or Apache Pulsar running on any Kubernetes platform, including Minikube, K8d, Kind, Google Kubernetes Engine (GKE), Microsoft Azure Kubernetes Service, Amazon Kubernetes Service (AKS), and other commonly used platforms.
+You can deploy the change agent with Cassandra on Kubernetes with the <a href="https://github.com/datastax/cass-operator">cass-operator</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_where_is_the_cdc_for_cassandra_public_github_repository"><a class="anchor" href="#_where_is_the_cdc_for_cassandra_public_github_repository"></a>Where is the CDC for Cassandra public GitHub repository?</h3>
+<div class="paragraph">
+<p>The source for this FAQs document is co-located with the CDC for Cassandra repository code.
+You can access the repository <a href="https://github.com/datastax/cdc-apache-cassandra">here</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_do_i_install_cdc_for_cassandra"><a class="anchor" href="#_how_do_i_install_cdc_for_cassandra"></a>How do I install CDC for Cassandra?</h3>
+<div class="paragraph">
+<p>Follow the <a href="install.html" class="page">install</a> instructions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_prometheus"><a class="anchor" href="#_what_is_prometheus"></a>What is Prometheus?</h3>
+<div class="paragraph">
+<p><a href="https://prometheus.io/docs/introduction/overview/">Prometheus</a> is an open-source tool to collect metrics on a running app, providing real-time monitoring and alerts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_grafana"><a class="anchor" href="#_what_is_grafana"></a>What is Grafana?</h3>
+<div class="paragraph">
+<p><a href="https://grafana.com/">Grafana</a> is a visualization tool that helps you make sense of metrics and related data coming from your apps via Prometheus.</p>
 </div>
 </div>
 </div>
