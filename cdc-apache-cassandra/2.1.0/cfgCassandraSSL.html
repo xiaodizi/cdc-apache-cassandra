@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.0.0/cfgCassandraAuth.html">
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.1.0/cfgCassandraSSL.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -42,7 +42,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="cdc-apache-cassandra" data-version="2.0.0">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="2.1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -71,14 +71,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
-    <span class="version">2.0.0</span>
+    <span class="version">2.1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.0.0</a>
+          <a href="index.html">2.1.0</a>
         </li>
       </ul>
     </li>
@@ -92,15 +92,15 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
 </nav>
-  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cfgCassandraAuth.adoc">Edit this Page</a></div>-->
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cfgCassandraSSL.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_cassandra_authentication_settings"><a class="anchor" href="#_cassandra_authentication_settings"></a>Cassandra Authentication settings</h2>
+<h2 id="_cassandra_ssltls_settings"><a class="anchor" href="#_cassandra_ssltls_settings"></a>Cassandra SSL/TLS settings</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Table Cassandra Authentication settings</caption>
+<caption class="title">Table 1. Table Cassandra SSL/TLS settings</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 37.5%;">
@@ -119,43 +119,64 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.gssapi.keyTab</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos keytab file for GSSAPI provider authentication</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.cipherSuites</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The cipher suites to enable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.gssapi.principal</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos principal for GSSAPI provider authentication</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.hostnameValidation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether or not to validate node hostnames when using SSL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.gssapi.service</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SASL service name to use for GSSAPI provider authentication</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dse</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.password</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password for PLAIN (username/password) provider authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.keystore.password</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keystore password</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[hidden]</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.provider</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication provider</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.keystore.path</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the keystore file</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[None, PLAIN, GSSAPI]</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.openssl.keyCertChain</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the certificate chain file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.openssl.privateKey</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the private key file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.provider</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL/TLS provider</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[None, JDK, OpenSSL]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>auth.username</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username for PLAIN (username/password) provider authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.truststore.password</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Truststore password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[hidden]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ssl.truststore.path</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the truststore file</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td>
