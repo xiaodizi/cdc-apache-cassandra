@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Change Data Capture with DataStax Enterprise :: DataStax CDC for Apache Cassandra documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.1.0/cdcExample.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../assets/css/site.css">
+    <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="http://docs.datastax.com/en/cdc-for-cassandra">
+        <img width="223px" height="43px" src="../../assets/img/logo.svg"/>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-end__group">
+          <div class="navbar-item">
+            <form id="alg-search-form" class="ds-search-form" action="https://www.datastax.com/search" target="_blank" method="GET">
+                <div>
+                    <input id="alg-search-input" class="ds-datastax-search-input" type="text" name="query" placeholder="Search docs"/>
+                    <button id="alg-search-button" class="ds-search-button" type="submit" style="display: none"></button>
+                    <input id="dataset" type="hidden" name="dataset" value="docs"/>
+                </div>
+            </form>
+          </div>
+          <div class="navbar-item">
+             <a class="navbar-item" href="/en/landing_page/doc/landing_page/current.html">Docs</a>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="cdc-apache-cassandra" data-version="2.1.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item toggler" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">About CDC for Cassandra</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="install.html">Installing CDC for Cassandra</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
+    <span class="version">2.1.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">DataStax CDC for Apache Cassandra(R) Documentation</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">2.1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="cdcExample.html">Change Data Capture with DataStax Enterprise</a></li>
+  </ul>
+</nav>
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/cdcExample.adoc">Edit this Page</a></div>-->
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Change Data Capture with DataStax Enterprise</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Capture schema changes in your C* tables and pass them to Apache Pulsar&#174; with DataStax Change Data Capture (CDC). This doc will guide you through installing, configuring, and using CDC with C* or DSE in a VM-based deployment.</p>
+</div>
+<div class="paragraph">
+<p>This installation requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>C* or DSE environment</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://downloads.datastax.com/#enterprise">DSE 6.8.21</a></p>
+</li>
+<li>
+<p><a href="https://cassandra.apache.org/_/download.html">OSS C*</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>CDC Agent</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/datastax/cdc-apache-cassandra/releases/download/v1.0.5/agent-dse4-pulsar-1.0.5-all.jar">DSE</a></p>
+</li>
+<li>
+<p><a href="https://github.com/datastax/cdc-apache-cassandra/releases/download/v1.0.5/agent-c4-pulsar-1.0.5-all.jar">OSS C*</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Pulsar</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/datastax/cdc-apache-cassandra/releases/download/v1.0.5/agent-dse4-pulsar-1.0.5-all.jar">DataStax Luna Streaming 2.8.3_1.0.7 Core</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Pulsar C* source connector (CSC)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/datastax/cdc-apache-cassandra/releases/download/v1.0.5/pulsar-cassandra-source-1.0.5.nar">pulsar-cassandra-source-1.0.5.nar</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_and_configuring"><a class="anchor" href="#_installing_and_configuring"></a>Installing and configuring</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the <a href="https://pulsar.apache.org/download/">Pulsar tarball</a> and set up a Pulsar cluster. This example uses Pulsar <a href="https://pulsar.apache.org/docs/en/standalone/">standalone mode</a>, but you can also use our helpful <a href="https://github.com/datastax/pulsar-ansible" target="_blank" rel="noopener">Ansible Scripts</a>.68</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $PULSAR_HOME
+bin/pulsar standalone</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We recommend using the latest CDC agent version (at least version 1.04+) to support C* collection data types.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install C*/DSE with your preferred <a href="https://docs.datastax.com/en/install/6.8/install/installWhichOne.html" target="_blank" rel="noopener">installation method</a>.</p>
+</li>
+<li>
+<p>After installing C*/DSE, but before starting the C*/DSE service, set the <code>Cassandra-env.sh</code> configuration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export CDC_PULSAR_SERVICE_URL="&lt;pulsar_broker_service_url&gt;" (e.g. pulsar://&lt;pulsar_server_ip&gt;:6650)
+
+# needed when Pulsar JWT authentication is enabled
+export CDC_PULSAR_AUTH_PLUGIN_CLASS_NAME="org.apache.pulsar.client.impl.auth.AuthenticationToken"
+export CDC_PULSAR_AUTH_PARAMS="file://&lt;/path/to/token/file&gt;"
+
+# needed when Pulsar TLS encryption is enabled
+export CDC_TLS_TRUST_CERTS_FILE_PATH=”&lt;/path/to/trusted/cert/file&gt;”
+
+# DSE CDC
+JVM_OPTS="$JVM_OPTS -javaagent:/home/automaton/cdc104/agent-dse4-pulsar-1.0.5-all.jar"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For CDC agent versions <strong>after 1.03</strong>, the CDC agent Pulsar connection parameters are provided as system environment variables (see <strong>DSE CDC</strong> in the example above).</p>
+</div>
+<div class="paragraph">
+<p>For CDC agent versions <strong>before 1.03</strong>, the CDC agent Pulsar connection parameters are provided as extra JVM options, as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-luna-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set the <code>cassandra.yaml</code> configuration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">cdc_enabled:true
+cdc_raw_directory:/var/lib/cassandra/cdc_raw
+commitlog_sync_period_in_ms:2000
+cdc_total_space_in_mb:4096</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start C*/DSE and verify your logs are similar to the C* <code>system.log</code> file below. <code>CDC agent started</code> indicates your CDC agent has started properly.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">INFO  [main] 2022-04-11 18:47:06,302  Agent.java:60 - Starting CDC agent, cdc_raw_directory=/var/lib/cassandra/cdc_raw
+INFO  [main] 2022-04-11 18:47:06,331  AgentConfig.java:526 - maxInflightMessagesPerTask=16384, sslEnabledProtocols=TLSv1.2,TLSv1.1,TLSv1, cdcWorkingDir=/usr/share/dse/data/cdc, pulsarMaxPendingMessagesAcrossPartitions=50000, pulsarMaxPendingMessages=1000, sslTruststorePath=null, cdcPollIntervalMs=60000, pulsarAuthParams=null, sslHostnameVerificationEnable=false, errorCommitLogReprocessEnabled=false, sslTruststorePassword=null, tlsTrustCertsFilePath=null, sslKeystorePath=null, sslKeystorePassword=null, sslAllowInsecureConnection=false, cdcConcurrentProcessors=-1, pulsarServiceUrl=pulsar://10.101.32.213:6650, pulsarKeyBasedBatcher=false, sslTruststoreType=JKS, pulsarBatchDelayInMs=-1, topicPrefix=events-, sslCipherSuites=null, pulsarAuthPluginClassName=null, sslProvider=null, useKeyStoreTls=false
+INFO  [main] 2022-04-11 18:47:06,433  Agent.java:92 - CDC agent started</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_pulsar_connector"><a class="anchor" href="#_deploy_pulsar_connector"></a>Deploy Pulsar Connector</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deploy the Pulsar Cassandra Source Connector (CSC) for each CDC-enabled C* table. In the below example, we&#8217;re configuring the source connector with parameters passed in <code>--source-config</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pulsar-admin source create \
+  --name &lt;csc_connector_name&gt; \
+  --archive /pathto/to/pulsar-cassandra-source-1.0.5.nar \
+  --tenant public \
+  --namespace default \
+  --destination-topic-name persistent://public/default/data-&lt;keyspace&gt;.&lt;table&gt; \
+  --parallelism 1 \
+  --source-config '{
+  	"events.topic": "persistent://public/default/events-&lt;keyspace&gt;.&lt;table&gt;",
+  	"keyspace": "&lt;C*_keyspace&gt;",
+  	"table": "&lt;C*_table&gt;",
+  	"contactPoints": "&lt;C*_contact_point_list&gt;",
+  	"port": "9042",
+  	"loadBalancing.localDc": "&lt;C*_DC_name&gt;"
+  }'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify the CSC connector is deployed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pulsar-admin source list
+[
+ "&lt;csc_connector_name&gt;"
+]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the CSC connector log file at <code>&lt;$PULSAR_HOME&gt;/logs/functions/public/default/&lt;csc_connector_name&gt;</code> for errors.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_end_to_end_operation"><a class="anchor" href="#_verify_end_to_end_operation"></a>Verify end-to-end operation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that Pulsar, C*/DSE, CDC, and the CSC connector are installed and verified to be operational, we can monitor the Pulsar data topic for the CDC-enabled C* table.<br></p>
+</div>
+<div class="paragraph">
+<p>Any captured CDC events from the C* table will be reflected in the command line output of the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pulsar-client consume -s mysub -st auto_consume -n 0 persistent://public/default/data-&lt;keyspace&gt;.&lt;table&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For more on monitoring your CDC for Cassandra deployment, see <a href="monitor.html" class="page">Monitor CDC for Cassandra</a>.
+For using CDC with Astra DB, see <a href="https://docs.datastax.com/en/astra-streaming/docs/astream-cdc.html">CDC for Astra DB</a>.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main></div>
+<footer class="footer">
+  <div class="footer-row">
+    <div class="footer__notice align-items-center row">
+      <div class="order-1 order-lg-0 col-lg col-12">
+        <p class="small mb-0">
+          © 2021 DataStax |
+          <a href="https://www.datastax.com/legal/datastax-website-privacy-policy">Privacy Policy</a> |
+          <a href="https://www.datastax.com/legal/datastax-website-terms-use">Terms of Use</a>
+              <!-- UNCOMMENT IF USING ONETRUST FOR COOKIES
+                <span><a href="#" id="ot-sdk-btn" class="ot-sdk-show-settings">Do Not Sell My Personal Information</a></span>
+              -->
+        </p>
+      </div>
+    <div class="text-center text-lg-left mb-5 mb-lg-0 col-lg-auto col-12">
+        <a class="ml-1" href="https://www.facebook.com/datastax" target="_blank" rel="noreferrer"><img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMyIDBIMHYzMS42NWgxNy4wOTVWMTkuNDM2aC00LjE4MlYxNC42Mmg0LjE2di0zLjUxNWMwLTQuMDkzIDIuNTItNi4zMiA2LjIwOS02LjMyYTM1LjI3IDM1LjI3IDAgMDEzLjc1LjIxMnY0LjI3aC0yLjU0OWMtMi4wMDQgMC0yLjM5MS45MzgtMi4zOTEgMi4zMnYzLjA1NWg0LjhsLS42MjMgNC43OTJoLTQuMTc3VjMxLjY1SDMyVjB6IiBmaWxsPSIjMUU3MUQ0Ii8+PC9zdmc+"
+            alt="Facebook logo" loading="lazy"></a>
+        <a class="ml-1" href="https://twitter.com/datastax" target="_blank" rel="noreferrer"><img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMyLjAwMSAzMS42NWgtMzJWMGgzMnYzMS42NXptLTE5LjcxMi03Ljc4NWM3LjU0NCAwIDExLjY3Mi02LjE4OCAxMS42NzItMTEuNTQ1IDAtLjE3NCAwLS4zNDgtLjAwOC0uNTIyLjgtLjU3IDEuNDk2LTEuMjkgMi4wNDgtMi4xMDVhOC4zODcgOC4zODcgMCAwMS0yLjM2LjY0MSA0LjA5IDQuMDkgMCAwMDEuODA4LTIuMjQ3IDguMjExIDguMjExIDAgMDEtMi42MDguOTgxIDQuMTE2IDQuMTE2IDAgMDAtMi45OTItMS4yODJjLTIuMjY0IDAtNC4xMDQgMS44Mi00LjEwNCA0LjA2IDAgLjMxNi4wNC42MjQuMTA0LjkyNUExMS42OTIgMTEuNjkyIDAgMDE3LjM5MyA4LjUzYTQuMDI0IDQuMDI0IDAgMDAtLjU1MiAyLjA0MSA0LjA2IDQuMDYgMCAwMDEuODI0IDMuMzggNC4xODQgNC4xODQgMCAwMS0xLjg1Ni0uNTA3di4wNTVjMCAxLjk2MiAxLjQxNiAzLjYwOCAzLjI4OCAzLjk4YTQuMDQgNC4wNCAwIDAxLTEuMDguMTQzYy0uMjY0IDAtLjUyLS4wMjQtLjc2OC0uMDcyYTQuMDk3IDQuMDk3IDAgMDAzLjgzMiAyLjgxNyA4LjI4NSA4LjI4NSAwIDAxLTUuMDk2IDEuNzQxYy0uMzI4IDAtLjY1Ni0uMDE2LS45NzYtLjA1NWExMS43NjMgMTEuNzYzIDAgMDA2LjI4IDEuODEyeiIgZmlsbD0iIzFFNzFENCIvPjwvc3ZnPg=="
+            alt="Twitter logo" loading="lazy"></a>
+        <a class="ml-1" href="https://www.linkedin.com/company/datastax/" target="_blank" rel="noreferrer"><img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTS4wMDEgMHYzMS42NWgzMlYwaC0zMnptOS40ODEgMjYuOTYyaC00Ljc0VjExLjg0aDQuNzR2MTUuMTIyek03LjExMiA5Ljc4OGEyLjcwNCAyLjcwNCAwIDAxLTIuNzI2LTIuNjk2YzAtMS41MjQgMS4yNDUtMi42OTYgMi43MjYtMi42OTYgMS41NCAwIDIuNzI2IDEuMjMgMi43MjYgMi42OTYuMDYgMS40NjUtMS4xODUgMi42OTYtMi43MjYgMi42OTZ6TTI3LjI2IDI2Ljk2MmgtNC43NHYtNy4zMjdjMC0xLjc1OC0uMDYtMy45ODUtMi40OS0zLjk4NS0yLjQ4OCAwLTIuODQ0IDEuOTM0LTIuODQ0IDMuODY4djcuNDQ0aC00Ljc0VjExLjg0aDQuNTYydjIuMDUxaC4wNmMuNjUxLTEuMTcyIDIuMTkyLTIuNDYxIDQuNTAzLTIuNDYxIDQuOCAwIDUuNjkgMy4xMDYgNS42OSA3LjIwOXY4LjMyM3oiIGZpbGw9IiMxRTcxRDQiLz48L3N2Zz4="
+            alt="LinkedIn logo" loading="lazy"></a>
+        <a class="ml-1" href="https://github.com/datastax/" target="_blank" rel="noreferrer"><img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMiAwSDB2MzEuNjVoMzJWMHpNNCAxNS44MDVDNCA5LjI4NyA5LjM1OCA0IDE1Ljk2MyA0IDIyLjU3IDQgMjcuOTI3IDkuMjg3IDI4IDE1LjgwNWMwIDUuMjE1LTMuMzc2IDkuNjMyLTguMTQ3IDExLjIyNi0uNTg3LjA3Mi0uODA3LS4yOS0uODA3LS41OHYtMy4yNTljMC0xLjA4Ni0uMzY3LTEuODEtLjgwOC0yLjE3MiAyLjY0My0uMjkgNS40MzItMS4yMzIgNS40MzItNS43OTRhNC42NSA0LjY1IDAgMDAtMS4yNDgtMy4xODdsLjAyMy0uMDg1YTQuNDQgNC40NCAwIDAwLS4xNy0zLjAzcy0xLjAyNy0uMjg5LTMuMzAyIDEuMjMyYTEzLjY4MSAxMy42ODEgMCAwMC0zLjAxLS4zNjJjLTEuMDI3IDAtMi4wNTUuMDcyLTMuMDA5LjM2Mi0yLjI3NS0xLjUyLTMuMzAzLTEuMjMxLTMuMzAzLTEuMjMxLS42NDggMS41NjQtLjIzNSAyLjc4LS4xNSAzLjAyOSAwIC4wMDQuMDAyLjAwOS4wMDQuMDEzLS44MDguODY5LTEuMjQ4IDEuODgzLTEuMjQ4IDMuMTg2IDAgNC41NjMgMi43ODkgNS41NzcgNS40MzEgNS44NjctLjI5My4yOS0uNjYuNzk2LS43MzQgMS41OTMtLjY2LjI5LTIuMzQ5Ljc5Ny0zLjQ1LTEuMDE0IDAgMC0uNjYtMS4xNTktMS44MzQtMS4yMzEgMCAwLTEuMTc1IDAtLjA3NC43MjQgMCAwIC44MDguMzYyIDEuMzIxIDEuNzM4IDAgMCAuNzM0IDIuMzE4IDQuMDM3IDEuNTkzdjIuMDI4YzAgLjI5LS4yMi42NTItLjgwNy41OEM3LjQ1IDI1LjQzNyA0IDIxLjAyIDQgMTUuODA1eiIgZmlsbD0iIzFFNzFENCIvPjwvc3ZnPg=="
+            alt="GitHub logo" loading="lazy"></a>
+    </div>
+   </div>
+  </div>
+</footer>
+<script src="../../assets/js/site.js"></script>
+<script async src="../../assets/js/vendor/highlight.js"></script>
+  </body>
+</html>
