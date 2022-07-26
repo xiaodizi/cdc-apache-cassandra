@@ -58,10 +58,16 @@
     <a class="nav-link" href="install.html">Installing CDC for Cassandra for VM deployment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitoring CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdc-cassandra-events.html">CDC for Cassandra Events</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="cdcExample.html">Change Data Capture with DataStax Enterprise</a>
   </li>
 </ul>
   </li>
@@ -167,15 +173,12 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Download the <a href="https://pulsar.apache.org/download/">Pulsar tarball</a> and set up a Pulsar cluster. This example uses Pulsar <a href="https://pulsar.apache.org/docs/en/standalone/">standalone mode</a>, but you can also use our helpful <a href="https://github.com/datastax/pulsar-ansible" target="_blank" rel="noopener">Ansible Scripts</a>.68</p>
+<p>Download the <a href="https://pulsar.apache.org/download/">Pulsar tarball</a> and set up a Pulsar cluster. This example uses Pulsar <a href="https://pulsar.apache.org/docs/en/standalone/">standalone mode</a>, but you can also use our helpful <a href="https://github.com/datastax/pulsar-ansible" target="_blank" rel="noopener">Ansible Scripts</a>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $PULSAR_HOME
 bin/pulsar standalone</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -191,8 +194,7 @@ bin/pulsar standalone</code></pre>
 </tr>
 </table>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Install C*/DSE with your preferred <a href="https://docs.datastax.com/en/install/6.8/install/installWhichOne.html" target="_blank" rel="noopener">installation method</a>.</p>
 </li>
@@ -315,7 +317,7 @@ INFO  [main] 2022-04-11 18:47:06,433  Agent.java:92 - CDC agent started</code></
 <h2 id="_whats_next"><a class="anchor" href="#_whats_next"></a>What&#8217;s next?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For more on monitoring your CDC for Cassandra deployment, see <a href="monitor.html" class="page">Monitor CDC for Cassandra</a>.
+<p>For more on monitoring your CDC for Cassandra deployment, see <a href="monitor.html" class="page">Monitor CDC for Cassandra</a>.<br>
 For using CDC with Astra DB, see <a href="https://docs.datastax.com/en/astra-streaming/docs/astream-cdc.html">CDC for Astra DB</a>.</p>
 </div>
 </div>

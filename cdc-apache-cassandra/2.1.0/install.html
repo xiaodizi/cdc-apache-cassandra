@@ -58,10 +58,16 @@
     <a class="nav-link" href="install.html">Installing CDC for Cassandra for VM deployment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitoring CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdc-cassandra-events.html">CDC for Cassandra Events</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdcExample.html">Change Data Capture with DataStax Enterprise</a>
   </li>
 </ul>
   </li>
@@ -120,13 +126,8 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Download the change agent tar file from the <a href="https://downloads.datastax.com/#cassandra-change-agent">DataStax downloads page</a>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The following files are available in the tar file:</p>
-</div>
+<p>Download the change agent tar file from the <a href="https://downloads.datastax.com/#cassandra-change-agent">DataStax downloads page</a>.<br>
+The following files are available in the tar file:</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -153,8 +154,7 @@
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Extract the files from the tar with the following command:</p>
 <div class="listingblock">
@@ -437,7 +437,7 @@ cdc_total_space_in_mb: 50000</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_download_cdc_pulsar"><a class="anchor" href="#_download_cdc_pulsar"></a>Download {cdc_pulsar}</h2>
+<h2 id="_download_cdc_for_cassandra"><a class="anchor" href="#_download_cdc_for_cassandra"></a>Download CDC for Cassandra</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IMPORTANT</p>
@@ -494,11 +494,11 @@ cdc_total_space_in_mb: 50000</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy_cdc_pulsar"><a class="anchor" href="#_deploy_cdc_pulsar"></a>Deploy {cdc_pulsar}</h2>
+<h2 id="_deploy_cdc_for_cassandra"><a class="anchor" href="#_deploy_cdc_for_cassandra"></a>Deploy CDC for Cassandra</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To deploy the {cdc_pulsar} <code>NAR</code> file in your Pulsar cluster, upload it to Luna Streaming or Pulsar using the <code>pulsar-admin sources create</code> command.
-You need to deploy {cdc_pulsar} for each CDC-enabled table.</p>
+<p>To deploy the CDC for Cassandra <code>NAR</code> file in your Pulsar cluster, upload it to Luna Streaming or Pulsar using the <code>pulsar-admin sources create</code> command.
+You need to deploy CDC for Cassandra for each CDC-enabled table.</p>
 </div>
 <div class="paragraph">
 <p>For each CDC-enabled table, the change agent will send events to the events topic.
@@ -514,7 +514,7 @@ The <code>&lt;keyspace_name&gt;.&lt;table_name&gt;</code> is appended to the pre
 <p>Connector name. You have one connector per CDC-enabled Cassandra table, make sure to use a unique name.</p>
 </li>
 <li>
-<p>Previously downloaded {cdc_pulsar} <code>NAR</code> file.</p>
+<p>Previously downloaded CDC for Cassandra <code>NAR</code> file.</p>
 </li>
 <li>
 <p>Pulsar <code>tenant</code> and <code>namespace</code> where the connector will run.</p>
@@ -573,10 +573,10 @@ The <code>&lt;keyspace_name&gt;.&lt;table_name&gt;</code> is appended to the pre
 <p>Once the connector is running, it will process events from the <code>events</code> topic and publish the result to the <code>data</code> topic.</p>
 </div>
 <div class="paragraph">
-<p>For the full set of source configuration options, see <a href="cfgCassandraSource.html" class="page">{cdc_pulsar} settings</a>.
+<p>For the full set of source configuration options, see <a href="cfgCassandraSource.html" class="page">CDC for Cassandra settings</a>.
 For the full set of Cassandra authentication options, see <a href="cfgCassandraAuth.html" class="page">Cassandra Authentication settings</a>.
 For the full set of Cassandra SSL settings, see <a href="cfgCassandraSSL.html" class="page">Cassandra SSL/TLS settings</a>.
-For advanced configuration of the Cassandra driver in the {cdc_pulsar}, see <a href="cfgCassandraJavaDriverSettings.html" class="page">Pass {cdc_pulsar} settings directly to the DataStax Java driver</a>.</p>
+For advanced configuration of the Cassandra driver in the CDC for Cassandra, see <a href="cfgCassandraJavaDriverSettings.html" class="page">Pass CDC for Cassandra settings directly to the DataStax Java driver</a>.</p>
 </div>
 </div>
 </div>
@@ -594,7 +594,7 @@ ALTER TABLE foo WITH cdc=false;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When CDC is enabled on a table, updates to that table are sent by the change agent to the {cdc_pulsar} which further processes the event and then sends it to the data topic when it can be processed by other connectors (for example, Elasticsearch).</p>
+<p>When CDC is enabled on a table, updates to that table are sent by the change agent to the CDC for Cassandra which further processes the event and then sends it to the data topic when it can be processed by other connectors (for example, Elasticsearch).</p>
 </div>
 </div>
 </div>
@@ -992,10 +992,10 @@ ALTER TABLE foo WITH cdc=false;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pass_cdc_pulsar_settings_directly_to_the_datastax_java_driver"><a class="anchor" href="#_pass_cdc_pulsar_settings_directly_to_the_datastax_java_driver"></a>Pass {cdc_pulsar} settings directly to the DataStax Java driver</h2>
+<h2 id="_pass_cdc_for_cassandra_settings_directly_to_the_datastax_java_driver"><a class="anchor" href="#_pass_cdc_for_cassandra_settings_directly_to_the_datastax_java_driver"></a>Pass CDC for Cassandra settings directly to the DataStax Java driver</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In your {cdc_pulsar} configuration file, you can directly pass settings to the DataStax Java driver by using the <code>datastax-java-driver</code> prefix.
+<p>In your CDC for Cassandra configuration file, you can directly pass settings to the DataStax Java driver by using the <code>datastax-java-driver</code> prefix.
 For example:</p>
 </div>
 <div class="listingblock">
@@ -1006,10 +1006,10 @@ For example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mapping_cdc_pulsar_settings_to_java_driver_properties"><a class="anchor" href="#_mapping_cdc_pulsar_settings_to_java_driver_properties"></a>Mapping {cdc_pulsar} settings to Java driver properties</h2>
+<h2 id="_mapping_cdc_for_cassandra_settings_to_java_driver_properties"><a class="anchor" href="#_mapping_cdc_for_cassandra_settings_to_java_driver_properties"></a>Mapping CDC for Cassandra settings to Java driver properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following table identifies functionally equivalent {cdc_pulsar} and DataStax Java driver settings.</p>
+<p>The following table identifies functionally equivalent CDC for Cassandra and DataStax Java driver settings.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1018,8 +1018,8 @@ For example:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you define both in your configuration, the {cdc_pulsar} setting take precedence over the <code>datastax-java-driver.property-name</code>.
-If you do not provide either in your configuration, {cdc_pulsar} defaults are in effect.
+If you define both in your configuration, the CDC for Cassandra setting take precedence over the <code>datastax-java-driver.property-name</code>.
+If you do not provide either in your configuration, CDC for Cassandra defaults are in effect.
 </td>
 </tr>
 </table>
@@ -1070,8 +1070,8 @@ If you do not provide either in your configuration, {cdc_pulsar} defaults are in
 </tbody>
 </table>
 <div class="paragraph">
-<p>There is a difference between the {cdc_pulsar}'s <code>contactPoints</code> setting and the Java driver&#8217;s <code>datastax-java-driver.basic.contact-points</code>.
-For {cdc_pulsar}'s <code>contactPoints</code>, the value of the port is appended to every host provided by this setting.
+<p>There is a difference between the CDC for Cassandra&#8217;s <code>contactPoints</code> setting and the Java driver&#8217;s <code>datastax-java-driver.basic.contact-points</code>.
+For CDC for Cassandra&#8217;s <code>contactPoints</code>, the value of the port is appended to every host provided by this setting.
 For <code>datastax-java-driver.basic.contact-points</code>, you must provide the fully qualified contact points (<code>host:port</code>).</p>
 </div>
 <div class="paragraph">
@@ -1085,7 +1085,7 @@ For <code>datastax-java-driver.basic.contact-points</code>, you must provide the
 </div>
 </div>
 <div class="sect1">
-<h2 id="_for_more"><a class="anchor" href="#_for_more"></a>For more</h2>
+<h2 id="_java_driver_reference"><a class="anchor" href="#_java_driver_reference"></a>Java driver reference</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For more information, refer to the <a href="https://docs.datastax.com/en/developer/java-driver/4.3/manual/core/configuration/reference/">Java driver reference configuration</a> topic.</p>

@@ -58,10 +58,16 @@
     <a class="nav-link" href="install.html">Installing CDC for Cassandra for VM deployment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitoring CDC for Cassandra</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdc-cassandra-events.html">CDC for Cassandra Events</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdcExample.html">Change Data Capture with DataStax Enterprise</a>
   </li>
 </ul>
   </li>
@@ -122,7 +128,7 @@ The DataStax Cassandra Source Connector for Apache Pulsar™ component is simple
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_are_the_requirements_for_cdc_pulsar"><a class="anchor" href="#_what_are_the_requirements_for_cdc_pulsar"></a>What are the requirements for {cdc_pulsar}?</h3>
+<h3 id="_what_are_the_requirements_for_cdc_for_cassandra"><a class="anchor" href="#_what_are_the_requirements_for_cdc_for_cassandra"></a>What are the requirements for CDC for Cassandra?</h3>
 <div class="paragraph">
 <p>Minimum requirements are:</p>
 </div>
@@ -286,7 +292,7 @@ The following warning message is included in Cassandra logs:</p>
 To prevent hitting this new limit, increase the write throughput to Luna Streaming or Apache Pulsar, or decrease the write throughput to your node.</p>
 </div>
 <div class="paragraph">
-<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partitions of your topics), or the {cdc_pulsar} configuration (query executors, batching and cache settings, connector parallelism).</p>
+<p>Increasing the Luna Streaming or Apache Pulsar write throughput may involve tuning the change agent configuration (the number of allocated threads, the batching delay, the number of inflight messages), the Luna Streaming or Apache Pulsar configuration (the number of partitions of your topics), or the CDC for Cassandra configuration (query executors, batching and cache settings, connector parallelism).</p>
 </div>
 <div class="paragraph">
 <p>As a last resort, if losing data is acceptable in your CDC pipeline, remove <code>commitlog</code> files from the <code>cdc_raw</code> directory.

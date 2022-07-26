@@ -58,10 +58,16 @@
     <a class="nav-link" href="install.html">Installing CDC for Cassandra for VM deployment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
+    <a class="nav-link" href="monitor.html">Monitoring CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="faqs.html">CDC for Cassandra FAQs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdc-cassandra-events.html">CDC for Cassandra Events</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cdcExample.html">Change Data Capture with DataStax Enterprise</a>
   </li>
 </ul>
   </li>
@@ -145,7 +151,7 @@ for tables having Change Data Capture (CDC) enabled to <a href="https://www.data
 <p>DataStax Change Agent for Apache Cassandra, which is an event producer deployed as a JVM agent on each Cassandra data node</p>
 </li>
 <li>
-<p>{cdc_pulsar}, which is a source connector deployed in your Pulsar cluster</p>
+<p>CDC for Cassandra, which is a source connector deployed in your Pulsar cluster</p>
 </li>
 </ul>
 </div>
@@ -171,7 +177,7 @@ Since Cassandra 4.0 (and back ported in C* 3.11+), the C* CDC feature has been i
 <p>The change agent running on each node reads the Cassandra <code>commitlog</code> files in the <code>cdc_raw</code> directory and emits a message for each Cassandra mutation on a CDC-enabled table to a per-table events topic.</p>
 </li>
 <li>
-<p>The {cdc_pulsar} agent processes these events and fetches the mutated Cassandra row.</p>
+<p>The CDC for Cassandra agent processes these events and fetches the mutated Cassandra row.</p>
 </li>
 <li>
 <p>The Cassandra Source Connector writes the row into the data topic with necessary processing tasks that make sure the most recent state of the Cassandra table is replicated into the data topic correctly (no duplication, right order, etc.)</p>
@@ -182,9 +188,9 @@ Since Cassandra 4.0 (and back ported in C* 3.11+), the C* CDC feature has been i
 </ol>
 </div>
 <div class="paragraph">
-<p>{cdc_pulsar} is tolerant of failures when processing the commit logs in the <code>cdc_raw</code> directory.
+<p>CDC for Cassandra is tolerant of failures when processing the commit logs in the <code>cdc_raw</code> directory.
 It maintains a processing offset for each commit log.
-If the change agent restarts, {cdc_pulsar} picks up where it left off using the recorded offset value.</p>
+If the change agent restarts, CDC for Cassandra picks up where it left off using the recorded offset value.</p>
 </div>
 <div class="paragraph">
 <p>The following table describes what is published to the data topic for each update to a CDC-enabled Cassandra table.</p>
@@ -225,7 +231,7 @@ For example, with the Pulsar Elasticsearch connector, you need to set <code>null
 <div class="paragraph">
 <p>The change agent runs on all Cassandra data nodes.
 This means that the agent processes the original write plus its replicas.
-To minimize the number of duplicate events that end up in the data topic, the {cdc_pulsar} maintains an in-memory de-duplication cache.
+To minimize the number of duplicate events that end up in the data topic, the CDC for Cassandra maintains an in-memory de-duplication cache.
 For each update to the table, an MD5 digest is calculated to de-duplicate the updates from the replicas.</p>
 </div>
 <div class="sect2">
@@ -457,7 +463,7 @@ If a row update contains both supported and unsupported data types, the event wi
 </ul>
 </div>
 <div class="paragraph">
-<p>To ensure the {cdc_pulsar} can automatically update the schema on the Pulsar topic, set the option to <code>true</code>. For more, see <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
+<p>To ensure the CDC for Cassandra can automatically update the schema on the Pulsar topic, set the option to <code>true</code>. For more, see <a href="https://pulsar.apache.org/docs/en/schema-manage/">Schema Auto-Update</a>.</p>
 </div>
 </div>
 <div class="sect2">
