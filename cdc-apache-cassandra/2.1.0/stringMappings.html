@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: DataStax CDC for Apache Cassandra documentation</title>
-    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.1.0/agentParams.html">
+    <title>CDC Change Agent Parameter Mappings :: DataStax CDC for Apache Cassandra documentation</title>
+    <link rel="canonical" href="http://docs.datastax.com/en/cdc-for-cassandra/cdc-apache-cassandra/2.1.0/stringMappings.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../assets/css/site.css">
     <link rel="icon" href="https://www.datastax.com/favicon.ico" type="image/x-icon">
@@ -91,205 +91,183 @@
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DataStax CDC for Apache Cassandra(R) Documentation</a></li>
+    <li><a href="stringMappings.html">CDC Change Agent Parameter Mappings</a></li>
+  </ul>
 </nav>
-  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/agentParams.adoc">Edit this Page</a></div>-->
+  <!--<div class="edit-this-page"><a href="https://github.com/datastax/cdc-for-cassandra/blob/master/docs/docs/modules/ROOT/pages/stringMappings.adoc">Edit this Page</a></div>-->
 </div>
   <div class="content">
 <article class="doc">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Table Change Agent Parameters</caption>
+<h1 class="page">CDC Change Agent Parameter Mappings</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In CDC versions <strong>before 1.0.3</strong>, the CDC agent Pulsar connection parameters were provided as extra JVM options after the <code>.jar</code> file name in the form of a comma-separated list of <code>paramName=paramValue</code>, as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JVM_EXTRA_OPTS="-javaagent:/path/to/agent-c4-luna-&lt;version&gt;-all.jar=pulsarServiceUrl=pulsar://pulsar:6650"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In CDC versions <strong>after 1.0.3</strong>, the CDC agent Pulsar connection parameters are also provided as system environment parameters in <code>cassandra-env.sh</code>. The JVM option above is now appended to <code>cassandra-env.sh</code> as below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export CDC_PULSAR_SERVICE_URL="pulsar://&lt;pulsar_server_ip&gt;:6650"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This document lists the CDC Change Agent parameter mappings between the JVM option strings and C* strings.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_change_agent_parameter_mappings"><a class="anchor" href="#_change_agent_parameter_mappings"></a>Change Agent Parameter Mappings</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 11.1111%;">
-<col style="width: 11.1111%;">
-<col style="width: 22.2223%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JVM Option</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EnvVar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">System Mapping</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>topicPrefix</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The event topic name prefix. The <code>&lt;keyspace_name&gt;.&lt;table_name&gt;</code> is appended to that prefix to build the topic name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">events-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_TOPIC_PREFIX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TOPIC_PREFIX</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcWorkingDir</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The CDC working directory where the last sent offset is saved, and where the archived and errored commitlogs files are copied.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CDC_WORKING_DIR</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcPollIntervalMs</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The poll interval in milliseconds for watching new commitlog files in the CDC raw directory.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_DIR_POLL_INTERVAL_MS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_DIR_POLL_INTERNAL_MS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>errorCommitLogReprocessEnabled</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable the re-processing of error commitlogs files.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_ERROR_COMMITLOG_REPROCESS_ENABLED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ERROR_COMMITLOG_REPROCESS_ENABLED</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cdcConcurrentProcessors</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The number of threads used to process commitlog files. The default value is the <code>memtable_flush_writers</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CDC_CONCURRENT_PROCESSORS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>maxInflightMessagesPerTask</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of in-flight messages per commitlog processing task.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16384</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_MAX_INFLIGHT_MESSAGES_PER_TASK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAX_INFLIGHT_MESSAGES_PER_TASK</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarServiceUrl</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar broker service URL.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pulsar://localhost:6650</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_SERVICE_URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_SERVICE_URL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarBatchDelayInMs</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pulsar batching delay in milliseconds. Pulsar batching is enabled when this value is greater than zero.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_BATCH_DELAY_IN_MS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_BATCH_DELAY_IN_MS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarKeyBasedBatcher</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">When true, use the Pulsar KEY_BASED BatchBuilder.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_KEY_BASED_BATCHER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_KEY_BASED_BATCHER</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarMaxPendingMessages</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar maximum size of a queue holding pending messages.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_MAX_PENDING_MESSAGES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_MAX_PENDING_MESSAGES</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarMaxPendingMessagesAcrossPartitions</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar maximum number of pending messages across partitions.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">50000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_MAX_PENDING_MESSAGES_ACROSS_PARTITIONS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_MAX_PENDING_MESSAGES_ACROSS_PARTITIONS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthPluginClassName</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication plugin class name.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_AUTH_PLUGIN_CLASS_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_AUTH_PLUGIN_CLASS_NAME</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pulsarAuthParams</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Pulsar authentication parameters.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_PULSAR_AUTH_PARAMS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PULSAR_AUTH_PARAMS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslProvider</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The SSL/TLS provider to use.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_PROVIDER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_PROVIDER</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslTruststorePath</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to the SSL/TLS truststore file.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_TRUSTSTORE_PATH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_TRUSTSTORE_PATH</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslTruststorePassword</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The password for the SSL/TLS truststore.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_TRUSTSTORE_PASSWORD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_TRUSTSTORE_PASSWORD</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslTruststoreType</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The type of the SSL/TLS truststore.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JKS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_TRUSTSTORE_TYPE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_TRUSTSTORE_TYPE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslKeystorePath</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to the SSL/TLS keystore file.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_KEYSTORE_PATH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_KEYSTORE_PATH</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslKeystorePassword</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The password for the SSL/TLS keystore.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_KEYSTORE_PASSWORD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_KEYSTORE_PASSWORD</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslCipherSuites</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines one or more cipher suites to use for negotiating the SSL/TLS connection.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_CIPHER_SUITES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_CIPHER_SUITES</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslEnabledProtocols</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled SSL/TLS protocols</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TLSv1.2,TLSv1.1,TLSv1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_ENABLED_PROTOCOLS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_ENABLED_PROTOCOLS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslAllowInsecureConnection</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows insecure connections to servers whose certificate has not been signed by an approved CA. You should always disable <code>sslAllowInsecureConnection</code> in production environments.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_ALLOW_INSECURE_CONNECTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_ALLOW_INSECURE_CONNECTION</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>sslHostnameVerificationEnable</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable the server hostname verification.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_SSL_HOSTNAME_VERIFICATION_ENABLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL_HOSTNAME_VERIFICATION_ENABLE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tlsTrustCertsFilePath</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to the trusted TLS certificate file.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_TLS_TRUST_CERTS_FILE_PATH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TLS_TRUST_CERTS_FILE_PATH</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>useKeyStoreTls</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The path path to the trusted TLS certificate file.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CDC_USE_KEYSTORE_TLS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable or disable TLS keystore.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USE_KEYSTORE_TLS</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

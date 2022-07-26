@@ -55,7 +55,7 @@
     <a class="nav-link" href="index.html">About CDC for Cassandra</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="install.html">Installing CDC for Cassandra</a>
+    <a class="nav-link" href="install.html">Installing CDC for Cassandra for VM deployment</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="monitor.html">Monitor CDC for Cassandra</a>
@@ -181,10 +181,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_csc_for_pulsar_stats"><a class="anchor" href="#_csc_for_pulsar_stats"></a>CSC for Pulsar stats</h2>
+<h2 id="_cdc_for_cassandra_stats"><a class="anchor" href="#_cdc_for_cassandra_stats"></a>CDC for Cassandra stats</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CSC for Pulsar framework reports stats for each connector. You can view the stats for a connector like this:</p>
+<p>The CDC for Cassandra framework reports stats for each connector. You can view the stats for a connector like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -211,17 +211,17 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The stats <code>numReceivedFromSource</code> and <code>numWritten</code> indicate how many events have been processed by the CSC for Pulsar.
+<p>The stats <code>numReceivedFromSource</code> and <code>numWritten</code> indicate how many events have been processed by the CDC for Cassandra.
 If the connector has errors, the counts are shown.
 A description of the last seen error is displayed in the <code>error</code> field.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_csc_for_pulsar_metrics"><a class="anchor" href="#_csc_for_pulsar_metrics"></a>CSC for Pulsar metrics</h2>
+<h2 id="_cdc_for_cassandra_metrics"><a class="anchor" href="#_cdc_for_cassandra_metrics"></a>CDC for Cassandra metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CSC for Pulsar also publishes per message metrics:</p>
+<p>CDC for Cassandra also publishes per message metrics:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -261,12 +261,12 @@ A description of the last seen error is displayed in the <code>error</code> fiel
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">replication_latency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the CSC for Pulsar processing time minus the cassandra mutation writetime).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The replication latency in milliseconds (the CDC for Cassandra processing time minus the Cassandra mutation writetime).</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Here an example of those user-defined metrics aggregated by pulsar when processing 2000 mutations:</p>
+<p>Here an example of those user-defined metrics aggregated by Apache Pulsar™ when processing 2000 mutations:</p>
 </div>
 <div class="listingblock">
 <div class="content">
