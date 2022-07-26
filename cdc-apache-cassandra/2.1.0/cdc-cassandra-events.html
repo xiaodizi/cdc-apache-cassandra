@@ -163,7 +163,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>CREATE KEYSPACE ks1 WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">CREATE KEYSPACE ks1 WITH replication = {'class': 'NetworkTopologyStrategy', 'us-east1': '3'}  AND durable_writes = true;
 
 CREATE TABLE ks1.tbl1 (
     key text PRIMARY KEY,
@@ -181,7 +181,7 @@ CREATE TABLE ks1.tbl1 (
     AND memtable_flush_period_in_ms = 0
     AND min_index_interval = 128
     AND read_repair = 'BLOCKING'
-    AND speculative_retry = '99PERCENTILE';</pre>
+    AND speculative_retry = '99PERCENTILE';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -189,7 +189,7 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>INSERT INTO ks1.tbl1 (key, c1) VALUES (`3`, `bob3`)</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">INSERT INTO ks1.tbl1 (key, c1) VALUES (`3`, `bob3`)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -200,9 +200,9 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
   "key": "3"
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -210,9 +210,9 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{
   "c1": "bob3"
-}</pre>
+}</code></pre>
 </div>
 </div>
 </div>
@@ -230,7 +230,7 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/pulsar-admin source status --name cassandra-source-ks1-table1
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/pulsar-admin source status --name cassandra-source-ks1-table1
 {
     "numInstances" : 1,
     "numRunning" : 1,
@@ -250,7 +250,7 @@ CREATE TABLE ks1.tbl1 (
         "workerId" : "c-standalone-fw-localhost-8080"
         }
     } ]
-}</pre>
+}</code></pre>
 </div>
 </div>
 </div>
@@ -269,7 +269,7 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cat logs/functions/public/default/cassandra-source-ks1-table1/cassandra-source-ks1-table1-0.log</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat logs/functions/public/default/cassandra-source-ks1-table1/cassandra-source-ks1-table1-0.log</code></pre>
 </div>
 </div>
 </div>
@@ -280,7 +280,7 @@ CREATE TABLE ks1.tbl1 (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>bin/pulsar-admin schemas get "persistent://public/default/data-ks1.table1"
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/pulsar-admin schemas get "persistent://public/default/data-ks1.table1"
 {
   "version": 0,
   "schemaInfo": {
@@ -335,7 +335,7 @@ CREATE TABLE ks1.tbl1 (
       "value.schema.type": "AVRO"
     }
   }
-}</pre>
+}</code></pre>
 </div>
 </div>
 </div>
