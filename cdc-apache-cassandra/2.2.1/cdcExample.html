@@ -259,6 +259,57 @@ INFO  [main] 2022-04-11 18:47:06,433  Agent.java:92 - CDC agent started</code></
 <ol class="arabic">
 <li>
 <p>Deploy the Pulsar Cassandra Source Connector (CSC) for each CDC-enabled C* table. In the below example, we&#8217;re configuring the source connector with parameters passed in <code>--source-config</code>.</p>
+<div class="paragraph">
+<p>The <code>outputFormat</code> source configuration controls the format of messages on the data topic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>key-value-avro</code> - Default behavior. Key and value are encoded separately in AVRO format.</p>
+</li>
+<li>
+<p><code>key-value-json</code> - Key and value are encoded <strong>separately</strong> in JSON format.</p>
+</li>
+<li>
+<p><code>json</code> - Key and value are encoded <strong>together</strong> in a single JSON object. Key field is populated with a JSON string representing key fields.</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_key-value-avro"></a>Key-value-avro</p>
+</li>
+<li>
+<p><a id="tabset1_key-value-json"></a>Key-value-json</p>
+</li>
+<li>
+<p><a id="tabset1_json"></a>Json</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_key-value-avro">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pulsar-admin source create \
+  --name &lt;csc_connector_name&gt; \
+  --archive /pathto/to/pulsar-cassandra-source-1.0.5.nar \
+  --tenant public \
+  --namespace default \
+  --destination-topic-name &lt;keyspace&gt;.&lt;table&gt; \
+  --parallelism 1 \
+  --source-config {
+  	"events.topic": "persistent://public/default/events-&lt;keyspace&gt;.&lt;table&gt;",
+  	"keyspace": "&lt;C*_keyspace&gt;",
+  	"table": "&lt;C*_table&gt;",
+  	"contactPoints": "&lt;C*_contact_point_list&gt;",
+  	"port": "9042",
+  	"loadBalancing.localDc": "&lt;C*_DC_name&gt;",
+    "outputFormat": "key-value-avro"
+  }</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_key-value-json">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pulsar-admin source create \
@@ -268,25 +319,51 @@ INFO  [main] 2022-04-11 18:47:06,433  Agent.java:92 - CDC agent started</code></
   --namespace default \
   --destination-topic-name persistent://public/default/data-&lt;keyspace&gt;.&lt;table&gt; \
   --parallelism 1 \
-  --source-config '{
+  --source-config {
   	"events.topic": "persistent://public/default/events-&lt;keyspace&gt;.&lt;table&gt;",
   	"keyspace": "&lt;C*_keyspace&gt;",
   	"table": "&lt;C*_table&gt;",
   	"contactPoints": "&lt;C*_contact_point_list&gt;",
   	"port": "9042",
-  	"loadBalancing.localDc": "&lt;C*_DC_name&gt;"
-  }'</code></pre>
+  	"loadBalancing.localDc": "&lt;C*_DC_name&gt;",
+    "outputFormat": "key-value-json"
+  }</code></pre>
 </div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_json">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pulsar-admin source create \
+  --name &lt;csc_connector_name&gt; \
+  --archive /pathto/to/pulsar-cassandra-source-1.0.5.nar \
+  --tenant public \
+  --namespace default \
+  --destination-topic-name persistent://public/default/data-&lt;keyspace&gt;.&lt;table&gt; \
+  --parallelism 1 \
+  --source-config {
+  	"events.topic": "persistent://public/default/events-&lt;keyspace&gt;.&lt;table&gt;",
+  	"keyspace": "&lt;C*_keyspace&gt;",
+  	"table": "&lt;C*_table&gt;",
+  	"contactPoints": "&lt;C*_contact_point_list&gt;",
+  	"port": "9042",
+  	"loadBalancing.localDc": "&lt;C*_DC_name&gt;",
+    "outputFormat": "json"
+  }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
 <p>Verify the CSC connector is deployed.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pulsar-admin source list
-[
- "&lt;csc_connector_name&gt;"
-]</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pulsar-admin source list ["&lt;csc_connector_name&gt;"]</code></pre>
 </div>
 </div>
 </li>

@@ -313,69 +313,21 @@ For each update to the table, an MD5 digest is calculated to de-duplicate the up
 <h2 id="_supported_cassandra_data_structures"><a class="anchor" href="#_supported_cassandra_data_structures"></a>Supported Cassandra data structures</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following Cassandra CQL3 data types (with the associated AVRO type or logical-type) are supported:</p>
+<p>The following CQL data types are encoded as AVRO logical types:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>text (string)</p>
-</li>
-<li>
 <p>ascii (string)</p>
 </li>
 <li>
-<p>tinyint (int)</p>
-</li>
-<li>
-<p>smallint (int)</p>
-</li>
-<li>
-<p>int (int)</p>
-</li>
-<li>
 <p>bigint (long)</p>
-</li>
-<li>
-<p>double (double)</p>
-</li>
-<li>
-<p>float (float)</p>
-</li>
-<li>
-<p>inet (string)</p>
-</li>
-<li>
-<p>decimal (cql_decimal)</p>
-</li>
-<li>
-<p>varint (cql_varint)</p>
-</li>
-<li>
-<p>duration (cql_duration)</p>
 </li>
 <li>
 <p>blob(bytes)</p>
 </li>
 <li>
 <p>boolean (boolean)</p>
-</li>
-<li>
-<p>timestamp (timestamp-millis)</p>
-</li>
-<li>
-<p>time (time-micros)</p>
-</li>
-<li>
-<p>date (date)</p>
-</li>
-<li>
-<p>uuid (uuid)</p>
-</li>
-<li>
-<p>timeuuid (uuid)</p>
-</li>
-<li>
-<p>User Defined Types (record)</p>
 </li>
 <li>
 <p>Collection types:</p>
@@ -393,7 +345,69 @@ For each update to the table, an MD5 digest is calculated to de-duplicate the up
 </ul>
 </div>
 </li>
+<li>
+<p>date (date)</p>
+</li>
+<li>
+<p>decimal (cql_decimal)</p>
+</li>
+<li>
+<p>double (double)</p>
+</li>
+<li>
+<p>duration (cql_duration)</p>
+</li>
+<li>
+<p>float (float)</p>
+</li>
+<li>
+<p>inet (string)</p>
+</li>
+<li>
+<p>int (int)</p>
+</li>
+<li>
+<p>smallint (int)</p>
+</li>
+<li>
+<p>text (string)</p>
+</li>
+<li>
+<p>time (time-micros)</p>
+</li>
+<li>
+<p>timestamp (timestamp-millis)</p>
+</li>
+<li>
+<p>timeuuid (uuid)</p>
+</li>
+<li>
+<p>tinyint (int)</p>
+</li>
+<li>
+<p>User Defined Types (record)</p>
+</li>
+<li>
+<p>uuid (uuid)</p>
+</li>
+<li>
+<p>varint (cql_varint)</p>
+</li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If using the <code>key-value-json</code> output format, the supported C* types are the same as AVRO. The output is an exact schema with logical types, but with a JSON schema type.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Cassandra static columns are supported:</p>
