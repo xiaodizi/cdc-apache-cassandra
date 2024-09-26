@@ -7,7 +7,7 @@ plugins {
     id 'application'
     id "com.dorongold.task-tree" version "2.1.0"
     id "jacoco"
-    id "com.gorylenko.gradle-git-properties" version "2.3.1"
+    id "com.gorylenko.gradle-git-properties" version "2.4.2"
     id "com.google.osdetector" version "1.7.0"
     id "kr.motd.sphinx" version "2.10.1"
     id "com.github.hierynomus.license" version"0.16.1"
